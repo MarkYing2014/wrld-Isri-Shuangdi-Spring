@@ -34,142 +34,142 @@ export interface ContentSection {
 export const blogPosts: BlogPost[] = [
   {
     id: '6',
-    title: 'Wearable Safety Tech: Protecting Workers While Delivering Real ROI',
+    title: '可穿戴安全技术：优先考虑工人福祉，同时通过伤害预防和增强工作场所安全提供可衡量的业务收益',
     slug: 'wearable-safety-tech-protecting-workers-roi',
-    excerpt: 'Discover how wearable safety technology puts worker wellbeing first while delivering measurable business benefits through injury prevention and enhanced workplace safety.',
+    excerpt: '发现如何通过伤害预防和增强工作场所安全提供可衡量的业务收益，可穿戴安全技术优先考虑工人福祉。',
     date: 'June 12, 2025',
     author: 'WRLDS Technologies',
-    category: 'Business',
+    category: '业务',
     imageUrl: '/lovable-uploads/078a129e-0f98-4d91-af61-873687db1a04.png',
     keywords: [
-      'wearable safety technology',
-      'workplace injury prevention',
-      'worker safety',
-      'safety ROI',
-      'ergonomic sensors',
-      'workplace safety investment',
-      'industrial wearables',
-      'occupational safety',
-      'safety technology partnerships',
-      'worker protection',
-      'safety innovation',
-      'workplace wellbeing'
+      '可穿戴安全技术',
+      '工作场所伤害预防',
+      '工人安全',
+      '安全ROI',
+      '人体工程学传感器',
+      '工作场所安全投资',
+      '工业可穿戴设备',
+      '职业安全',
+      '安全技术伙伴关系',
+      '工人保护',
+      '安全创新',
+      '工作场所福祉'
     ],
-    metaDescription: 'Learn how wearable safety technology prioritizes worker protection while delivering proven business benefits. Real data shows significant injury reduction and improved workplace safety.',
+    metaDescription: '了解如何穿戴安全技术优先考虑工人保护，同时通过伤害预防和增强工作场所安全提供可衡量的业务收益。真实数据表明，工伤减少和工作场所安全显著改善。',
     content: [
       {
         type: 'paragraph',
-        content: 'Every worker deserves to go home safe at the end of their shift. That fundamental principle drives the evolution of workplace safety technology, where protecting people has always been the primary goal. What\'s remarkable about today\'s wearable safety technology is how it achieves this mission while also delivering tangible business benefits.'
+        content: '每个工人都应该在下班时安全回家。这一基本原则推动了工作场所安全技术的发展，其中保护人们一直是首要目标。今天穿戴安全技术的惊人之处在于，它如何实现这一使命，同时提供可衡量的业务收益。'
       },
       {
         type: 'stats',
         statsData: [
           {
             value: '2.2',
-            label: 'Workplace injuries per 100 workers annually',
+            label: '每年每100名工人受伤',
             icon: 'Users'
           },
           {
             value: '$43K',
-            label: 'Average cost per medically consulted injury',
+            label: '平均医疗咨询受伤成本',
             icon: 'DollarSign'
           },
           {
             value: '58%',
-            label: 'Injury reduction reported by early adopters',
+            label: '早期采用者报告的受伤减少',
             icon: 'TrendingUp'
           }
         ]
       },
       {
         type: 'heading',
-        content: 'The Human Cost Behind the Numbers'
+        content: '数字背后的代价'
       },
       {
         type: 'paragraph',
-        content: 'Behind every workplace injury statistic is a person: someone\'s parent, partner, or child. The data tells a sobering story about workplace safety in America. When we can prevent injuries before they happen, we\'re not just protecting company assets. We\'re preserving families and communities.'
+        content: ' Behind every workplace injury statistic is a person: someone\'s parent, partner, or child. The data tells a sobering story about workplace safety in America. When we can prevent injuries before they happen, we\'re not just protecting company assets. We\'re preserving families and communities.'
       },
       {
         type: 'heading',
-        content: 'Real Results from Wearable Safety Technology'
+        content: '穿戴安全技术的真实结果'
       },
       {
         type: 'paragraph',
-        content: 'The effectiveness of wearable safety technology becomes clear when we examine documented case studies and vendor-reported results. These implementations show real workers in demanding environments using technology that helps them stay safe while doing their jobs effectively.'
+        content: '穿戴安全技术的有效性通过分析文档案例研究和供应商报告结果变得清晰。这些实现展示了在 demanding environments using technology that helps them stay safe while doing their jobs effectively.'
       },
       {
         type: 'subheading',
-        content: 'Documented Industry Results'
+        content: '行业文档结果'
       },
       {
         type: 'icon-list',
         items: [
-          'Companies report significant reductions in workplace injuries with consistent wearable device usage',
-          'Workers feel more confident and supported knowing technology is monitoring their safety',
-          'Safety managers gain real-time insights into workplace hazards and risk patterns',
-          'Insurance providers recognize the value with bundled policies for high-adoption organizations'
+          '公司报告了通过持续使用穿戴设备减少了工伤',
+          '工人感到更自信和受到支持，知道技术正在监控他们的安全',
+          '安全经理获得实时洞察，了解工作场所的隐患和风险模式',
+          '保险公司认识到价值，为高采用组织提供捆绑政策'
         ]
       },
       {
         type: 'heading',
-        content: 'When Safety and Business Align'
+        content: '当安全与业务一致时'
       },
       {
         type: 'paragraph',
-        content: 'Effective safety technology creates a virtuous cycle where prioritizing people leads to positive business outcomes. When injuries decrease, so do workers\' compensation claims, replacement worker costs, and operational disruptions.'
+        content: '有效的安全技术创造了良性循环，其中优先考虑人可以带来积极的业务结果。当工伤减少时，工人赔偿索赔、替代工人的成本和运营中断也随之减少。'
       },
       {
         type: 'table',
         tableData: {
-          headers: ['Safety Outcome', 'Human Impact', 'Business Benefit'],
+          headers: ['安全结果', '人类影响', '业务收益'],
           rows: [
-            ['Fewer back injuries', 'Workers maintain mobility and quality of life', 'Reduced comp claims and medical costs'],
-            ['Better ergonomic awareness', 'Less fatigue and chronic pain', 'Higher productivity and retention'],
-            ['Early hazard detection', 'Prevention of serious accidents', 'Avoided downtime and investigations'],
-            ['Real-time feedback', 'Workers feel supported and valued', 'Improved safety culture and morale']
+            ['更少的背部伤害', '工人保持 mobility and quality of life', 'Reduced comp claims and medical costs'],
+            ['更好的 ergonomics意识', 'Less fatigue and chronic pain', 'Higher productivity and retention'],
+            ['早期隐患检测', '预防严重事故', 'Avoided downtime and investigations'],
+            ['实时反馈', '工人感到支持和被重视', 'Improved safety culture and morale']
           ]
         }
       },
       {
         type: 'heading',
-        content: 'Growing Market for Worker-Centered Safety'
+        content: '工人导向安全市场的增长'
       },
       {
         type: 'paragraph',
-        content: 'The market for wearable safety technology is expanding rapidly, reflecting a cultural shift toward prioritizing worker safety and wellbeing. Technology serves as an enabler rather than a replacement for human judgment and care.'
+        content: '穿戴安全技术市场的增长反映了对工人安全和福祉优先的文化的转变。技术作为赋能者而不是取代人类判断和关怀的替代品。'
       },
       {
         type: 'paragraph',
-        content: 'Industry analysts project substantial growth in the wearable safety market over the coming years. Starting from a market value of $1.6 billion in 2023, the sector is expected to grow steadily to $2.1 billion in 2024, reaching $2.7 billion by 2025. This growth trajectory continues with projections of $3.3 billion in 2026, $3.8 billion in 2027, and $4.2 billion by 2028. This expansion reflects increasing organizational commitment to worker safety and the proven value of wearable safety solutions.'
+        content: '行业分析师预测穿戴安全市场在未来几年将实现显著增长。从2023年的16亿美元市场规模开始，该领域预计将稳步增长到2024年的21亿美元，到2025年将达到27亿美元。这一增长轨迹继续预测2026年的33亿美元、2027年的38亿美元和2028年的42亿美元。这一扩张反映了组织对工人安全的日益承诺以及穿戴安全解决方案的公认价值。'
       },
       {
         type: 'heading',
-        content: 'How WRLDS Supports Your Safety Mission'
+        content: 'WRLDS如何支持您的安全使命'
       },
       {
         type: 'paragraph',
-        content: 'We understand that every organization\'s safety challenges are unique. That\'s why we\'ve built a flexible platform that can adapt to your specific needs while maintaining our core focus on worker protection.'
+        content: '我们理解每个组织的安全挑战都是独特的。这就是为什么我们构建了一个灵活的平台，可以适应您的具体需求，同时保持我们对工人保护的核心关注。'
       },
       {
         type: 'subheading',
-        content: 'Our Collaborative Approach'
+        content: '我们的协作方法'
       },
       {
         type: 'icon-list',
         items: [
-          'Flexible integration that works with your existing safety programs and doesn\'t disrupt worker routines',
-          'White-label solutions that let you maintain your brand identity while providing cutting-edge safety technology',
-          'Proven supply chain partnerships that ensure reliable, high-quality components for long-term deployment',
-          'Data insights that help you understand and improve your safety culture, not just track compliance metrics'
+          '灵活集成，与您的现有安全计划和工人例行程序无缝集成',
+          '白标解决方案，让您保持品牌身份，同时提供最先进的安全技术',
+          '经过验证的供应链伙伴关系，确保可靠的、高质量的组件用于长期部署',
+          '数据洞察，帮助您了解和改善您的安全文化，而不仅仅是跟踪合规指标'
         ]
       },
       {
         type: 'heading',
-        content: 'Start the Conversation'
+        content: '开始对话'
       },
       {
         type: 'paragraph',
-        content: 'We\'d love to learn about your safety goals and specific challenges. Whether you\'re looking to reduce particular types of injuries, improve safety culture, or explore how technology can support your existing programs, we\'re here to listen and collaborate.'
+        content: '我们很高兴能了解您的安全目标和具体挑战。无论是要减少特定类型的伤害，还是改善安全文化，或者探索技术如何支持您的现有计划，我们都很乐意倾听和合作。'
       },
       {
         type: 'paragraph',
@@ -177,11 +177,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        content: 'Great safety partnerships start with shared values: putting workers first, building trust through transparency, and believing that everyone deserves to work in an environment where they can thrive safely.'
+        content: '伟大的安全伙伴关系始于共享价值观：优先考虑工人，通过透明度建立信任，并相信每个人都应该在可以安全地茁壮成长的环境中工作。'
       },
       {
         type: 'heading',
-        content: 'Sources and References'
+        content: '参考文献'
       },
       {
         type: 'bibliography',
@@ -207,21 +207,21 @@ export const blogPosts: BlogPost[] = [
     category: 'Innovation',
     imageUrl: '/lovable-uploads/927dae7e-6aaf-4b76-add2-1287a1dd9dc0.png',
     keywords: [
-      'smart PPE',
-      'safety technology',
-      'personal protective equipment',
-      'smart textiles',
-      'workplace safety',
-      'wearable sensors',
-      'construction safety',
-      'industrial IoT',
-      'worker protection',
-      'safety monitoring',
-      'smart helmets',
-      'connected safety gear',
-      'occupational safety',
-      'safety innovation',
-      'protective equipment technology'
+      '智能PPE',
+      '安全技术',
+      '个人防护装备',
+      '智能纺织品',
+      '工作场所安全',
+      '可穿戴传感器',
+      '建筑业安全',
+      '工业物联网',
+      '工人保护',
+      '安全监控',
+      '智能头盔',
+      '连接安全装备',
+      '职业安全',
+      '安全创新',
+      '保护装备技术'
     ],
     metaDescription: 'Learn how smart PPE with integrated sensors is revolutionizing workplace safety. Discover the latest innovations in intelligent personal protective equipment that prevent accidents and save lives.',
     content: [

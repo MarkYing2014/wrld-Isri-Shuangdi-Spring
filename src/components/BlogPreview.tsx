@@ -19,16 +19,16 @@ const BlogPreview = () => {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Newspaper size={20} className="text-black" />
-              <span className="text-black font-medium">Our Blog</span>
+              <span className="text-black font-medium">我们的博客</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">Latest Updates</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">最新更新</h2>
             <p className="text-gray-800 max-w-xl">
-              Explore our latest insights on smart textile technology, industry trends, and innovation.
+            探索我们对智能纺织技术、行业趋势和创新的最新见解。
             </p>
           </div>
           <Link to="/blog" className="mt-4 md:mt-0">
             <Button variant="outline" className="group border-black text-black hover:bg-black hover:text-white">
-              View All Posts
+              查看所有文章
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
