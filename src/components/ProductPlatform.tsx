@@ -12,10 +12,9 @@ const ProductPlatform = () => {
         transition={{ duration: 0.5 }}
         className="mb-6"
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Product</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">产品</h2>
         <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-4xl">
-          5 years invested into tech focused end-to-end platform allowing customer brand to own pricing, branding, marketing and sales. Wrlds can help with all aspects of
-          product creation, certification, initial production and app development.
+          5年投资于专注于技术的端到端平台，允许客户品牌拥有定价、品牌、营销和销售。Wrlds可以帮助所有方面的产品开发、认证、初始生产和应用开发。
         </p>
       </motion.div>
 
@@ -29,17 +28,17 @@ const ProductPlatform = () => {
           className="flex-1"
         >
           <div className="bg-gray-200 rounded-xl p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-center mb-1">Physical Devices</h3>
-            <p className="text-xs sm:text-sm text-center mb-4">Data input</p>
+            <h3 className="text-lg sm:text-xl font-bold text-center mb-1">物理设备</h3>
+            <p className="text-xs sm:text-sm text-center mb-4">数据输入</p>
             
             <div className="space-y-3">
               {[
-                { icon: <Gauge className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Motion Sensors" },
-                { icon: <Cpu className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Heart Rate Sensors" },
-                { icon: <Bluetooth className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Wireless Connectivity" },
-                { icon: <Battery className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Power Management" },
-                { icon: <Database className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Local Storage" },
-                { icon: <Wifi className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Cellular Connection" }
+                { icon: <Gauge className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "运动传感器" },
+                { icon: <Cpu className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "心率传感器" },
+                { icon: <Bluetooth className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "无线连接" },
+                { icon: <Battery className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "电源管理" },
+                { icon: <Database className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "本地存储" },
+                { icon: <Wifi className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "蜂窝连接" }
               ].map((item, index) => (
                 <div key={index} className="bg-white rounded-lg p-3 sm:p-4 flex items-center">
                   <div className="mr-3 sm:mr-4 flex-shrink-0">{item.icon}</div>
@@ -49,7 +48,7 @@ const ProductPlatform = () => {
             </div>
             
             <p className="text-xs sm:text-sm text-center mt-4 sm:mt-6">
-              The hardware that collects data<br />from the physical world
+              收集数据的硬件
             </p>
           </div>
         </motion.div>
@@ -79,22 +78,22 @@ const ProductPlatform = () => {
           <div className="bg-gray-200 rounded-xl p-4 sm:p-6">
             <div className="flex flex-col items-center mb-3 sm:mb-4">
               <h3 className="text-xl sm:text-2xl font-bold text-center mb-0">wrlds</h3>
-              <p className="text-lg sm:text-xl font-medium text-center">Platform</p>
+              <p className="text-lg sm:text-xl font-medium text-center">平台</p>
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
               {[
-                { icon: <Database className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Cloud Storage" },
-                { icon: <Gauge className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Data Processing" },
+                { icon: <Database className="w-4 h-4 sm:w-5 sm:h-5" />, name: "云存储" },
+                { icon: <Gauge className="w-4 h-4 sm:w-5 sm:h-5" />, name: "数据处理" },
                 { icon: <Cpu className="w-4 h-4 sm:w-5 sm:h-5" />, name: "AI & ML" },
-                { icon: <Battery className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Power Opt." },
-                { icon: <Code className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Software" },
+                { icon: <Battery className="w-4 h-4 sm:w-5 sm:h-5" />, name: "电源优化" },
+                { icon: <Code className="w-4 h-4 sm:w-5 sm:h-5" />, name: "软件" },
                 { icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Demo Apps" },
-                { icon: <Wifi className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Real-time Data" },
-                { icon: <Server className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Edge Compute" },
+                { icon: <Wifi className="w-4 h-4 sm:w-5 sm:h-5" />, name: "实时数据" },
+                { icon: <Server className="w-4 h-4 sm:w-5 sm:h-5" />, name: "边缘计算" },
                 { icon: <Code className="w-4 h-4 sm:w-5 sm:h-5" />, name: "APIs" },
-                { icon: <Server className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Infrastructure" },
-                { icon: <Cloud className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Cloud" },
+                { icon: <Server className="w-4 h-4 sm:w-5 sm:h-5" />, name: "基础设施" },
+                { icon: <Cloud className="w-4 h-4 sm:w-5 sm:h-5" />, name: "云" },
                 { icon: <Code className="w-4 h-4 sm:w-5 sm:h-5" />, name: "Dev Tools" }
               ].map((item, index) => (
                 <div key={index} className="bg-white rounded-lg p-2 sm:p-3 text-center flex flex-col items-center justify-center">
@@ -105,7 +104,7 @@ const ProductPlatform = () => {
             </div>
             
             <p className="text-xs sm:text-sm text-center mt-4 sm:mt-6">
-              Our platform processes data and<br />powers intelligent applications
+              我们的平台处理数据并<br />驱动智能应用
             </p>
           </div>
         </motion.div>
@@ -133,15 +132,15 @@ const ProductPlatform = () => {
           className="flex-1"
         >
           <div className="bg-gray-200 rounded-xl p-4 sm:p-6">
-            <h3 className="text-lg sm:text-xl font-bold text-center mb-1">User Applications</h3>
-            <p className="text-xs sm:text-sm text-center mb-4">Data output</p>
+            <h3 className="text-lg sm:text-xl font-bold text-center mb-1">用户应用</h3>
+            <p className="text-xs sm:text-sm text-center mb-4">数据输出</p>
             
             <div className="space-y-3">
               {[
-                { icon: <MonitorSmartphone className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Analytics Dashboard" },
-                { icon: <Smartphone className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Mobile Applications" },
-                { icon: <FileText className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Customized Reports" },
-                { icon: <Code className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "Third-party Integration" }
+                { icon: <MonitorSmartphone className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "分析仪表板" },
+                { icon: <Smartphone className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "移动应用" },
+                { icon: <FileText className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "自定义报告" },
+                { icon: <Code className="text-black w-4 h-4 sm:w-5 sm:h-5" />, text: "第三方集成" }
               ].map((item, index) => (
                 <div key={index} className="bg-white rounded-lg p-3 sm:p-4 flex items-center">
                   <div className="mr-3 sm:mr-4 flex-shrink-0">{item.icon}</div>
@@ -151,7 +150,7 @@ const ProductPlatform = () => {
             </div>
             
             <p className="text-xs sm:text-sm text-center mt-4 sm:mt-6">
-              How people interact with and<br />benefit from the collected data
+              人们如何与和<br />受益于收集的数据
             </p>
           </div>
         </motion.div>

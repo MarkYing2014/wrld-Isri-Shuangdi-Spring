@@ -59,7 +59,7 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      Home
+                      首页
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -67,45 +67,45 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/about">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      About Us
+                      关于我们
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={cn(isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                    Customer Cases
+                    客户案例
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px]">
                       <li>
                         <Link to="/projects/firecat" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">FireCat 6th SENSE</div>
-                          <p className="text-sm text-gray-500">Smart textiles for firefighter safety</p>
+                          <div className="font-medium">FireCat 第六感</div>
+                          <p className="text-sm text-gray-500">智能纺织品用于消防员安全</p>
                         </Link>
                       </li>
                       <li>
                         <Link to="/projects/sport-retail" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Sports Performance</div>
-                          <p className="text-sm text-gray-500">Advanced tracking for athletes</p>
+                          <div className="font-medium">运动表现</div>
+                          <p className="text-sm text-gray-500">运动员高级跟踪</p>
                         </Link>
                       </li>
                       <li>
                         <Link to="/projects/workwear" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Workwear Climate Control</div>
-                          <p className="text-sm text-gray-500">Temperature regulation for extreme environments</p>
+                          <div className="font-medium">工作服装气候控制</div>
+                          <p className="text-sm text-gray-500">极端环境下的温度调节</p>
                         </Link>
                       </li>
                       <li>
                         <Link to="/projects/hockey" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Ice Hockey Elite Tracker</div>
-                          <p className="text-sm text-gray-500">Performance tracking for ice hockey</p>
+                          <div className="font-medium">冰球精英追踪器</div>
+                          <p className="text-sm text-gray-500">冰球精英追踪器</p>
                         </Link>
                       </li>
                       <li>
                         <Link to="/projects/pet-tracker" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Pet Activity Counter</div>
-                          <p className="text-sm text-gray-500">Smart collars for pet activity monitoring</p>
+                          <div className="font-medium">宠物活动计数器</div>
+                          <p className="text-sm text-gray-500">智能项圈用于宠物活动监测</p>
                         </Link>
                       </li>
                     </ul>
@@ -114,20 +114,20 @@ const Navbar = () => {
                 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={cn(isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                    Learn More
+                    了解更多
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px]">
                       <li>
                         <Link to="/tech-details" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Technology Details</div>
-                          <p className="text-sm text-gray-500">How our smart textile platform works</p>
+                          <div className="font-medium">技术详情</div>
+                          <p className="text-sm text-gray-500">我们的智能纺织平台如何工作</p>
                         </Link>
                       </li>
                       <li>
                         <Link to="/development-process" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">Development Process</div>
-                          <p className="text-sm text-gray-500">Our approach to creating custom solutions</p>
+                          <div className="font-medium">开发流程</div>
+                          <p className="text-sm text-gray-500">我们的方法来创建定制解决方案</p>
                         </Link>
                       </li>
                       <li>
@@ -140,7 +140,7 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/blog">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      News
+                      新闻
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -148,14 +148,14 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/careers">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      Careers
+                      职业生涯
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
                   <button onClick={() => scrollToSection('contact')} className={cn("px-4 py-2 rounded-md transition-colors", isScrolled ? "bg-gray-200 text-gray-700 hover:bg-gray-300" : "bg-gray-700 text-white hover:bg-gray-600")}>
-                    Contact Us
+                    联系我们
                   </button>
                 </NavigationMenuItem>
               </NavigationMenuList>
@@ -178,14 +178,14 @@ const Navbar = () => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            Home
+            首页
           </Link>
           
           <Link to="/about" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            About Us
+            关于我们
           </Link>
           
           {/* Simplified Customer Cases - no dropdown */}
@@ -193,7 +193,7 @@ const Navbar = () => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            Customer Cases
+            客户案例
           </Link>
           
           {/* Simplified Learn More - no dropdown */}
@@ -201,7 +201,7 @@ const Navbar = () => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            Learn More
+            了解更多
           </Link>
           
           <Link to="/blog" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
@@ -215,11 +215,11 @@ const Navbar = () => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            Careers
+            职业生涯
           </Link>
           
           <button onClick={() => scrollToSection('contact')} className={cn("block w-full text-left px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 bg-gray-200 hover:bg-gray-300" : "text-white bg-gray-700 hover:bg-gray-600")}>
-            Contact Us
+            联系我们
           </button>
         </div>
       </div>

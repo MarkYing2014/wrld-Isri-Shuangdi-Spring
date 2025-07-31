@@ -53,7 +53,7 @@ const ContactForm = () => {
         console.log('Bot detected via honeypot');
         toast({
           title: "Error",
-          description: "There was a problem with your submission. Please try again.",
+          description: "您的提交存在问题。请重试。",
           variant: "destructive"
         });
         return;
@@ -65,7 +65,7 @@ const ContactForm = () => {
         console.log(`Bot detected: Form submitted too quickly (${timeDiff}ms)`);
         toast({
           title: "Error",
-          description: "Please take a moment to review your message before submitting.",
+          description: "请在提交前花点时间查看您的消息。",
           variant: "destructive"
         });
         setIsSubmitting(false);
@@ -102,8 +102,8 @@ const ContactForm = () => {
       console.log('Email sent successfully:', response);
       
       toast({
-        title: "Message sent!",
-        description: "We've received your message and will get back to you soon.",
+        title: "消息已发送！",
+        description: "我们已收到您的消息，并将尽快回复您。",
         variant: "default"
       });
 
@@ -136,13 +136,13 @@ const ContactForm = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-block mb-3 px-3 py-1 bg-white text-black rounded-full text-sm font-medium">
-            Get In Touch
+          联系我们
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            Contact Us Today
+            今天就联系我们
           </h2>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-            Have questions about our AI-powered sensor solutions? Reach out to our team and let's discuss how we can help bring your ideas to life.
+            有任何问题关于我们的AI传感器解决方案？请联系我们，让我们讨论如何帮助您实现您的想法。
           </p>
         </div>
         
@@ -153,7 +153,7 @@ const ContactForm = () => {
                 <FormField control={form.control} name="name" render={({
                 field
               }) => <FormItem>
-                      <FormLabel className="text-gray-700">Name</FormLabel>
+                      <FormLabel className="text-gray-700">姓名</FormLabel>
                       <div className="relative">
                         <User className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
                         <FormControl>

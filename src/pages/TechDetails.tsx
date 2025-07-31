@@ -30,7 +30,7 @@ const TechDetails = () => {
           <div className="max-w-6xl mx-auto">
             <Link to="/" className="inline-flex items-center text-gray-500 hover:text-gray-700 mb-6 transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              返回首页
             </Link>
             
             <motion.h1 initial={{
@@ -42,7 +42,7 @@ const TechDetails = () => {
           }} transition={{
             duration: 0.5
           }} className="text-3xl sm:text-4xl font-bold mb-6">
-              Technical Deep Dive
+              技术深度解析
             </motion.h1>
             
             <div className="prose prose-lg max-w-none">
@@ -54,7 +54,7 @@ const TechDetails = () => {
               duration: 0.5,
               delay: 0.2
             }} className="text-base sm:text-lg text-gray-600 mb-12">
-                Explore the technical details behind our smart textile sensor technology and learn how our system architecture enables rapid development and deployment.
+                探索我们智能纺织传感技术背后的工程技术细节，了解我们的系统架构如何实现快速开发和部署。
               </motion.p>
               
               {/* System Architecture Section */}
@@ -69,12 +69,12 @@ const TechDetails = () => {
             }} className="mb-16">
                 <div className="flex items-center gap-2 mb-4">
                   <FileText className="w-5 h-5 text-gray-700" />
-                  <h2 className="text-2xl font-bold">System Architecture</h2>
+                  <h2 className="text-2xl font-bold">系统架构</h2>
                 </div>
                 
                 <p className="text-gray-600 mb-8 text-base max-w-3xl">
-                  Our platform uses a three-tier architecture connecting physical devices to our cloud services and user applications. 
-                  The diagram below illustrates how data flows through our system, from sensor collection to user-facing applications.
+                  我们平台使用三层架构连接物理设备到我们的云服务和用户应用程序。 
+                  下面的图表说明了数据如何通过我们的系统，从传感器收集到面向用户的应用程序。
                 </p>
 
                 {/* Progress bar showing flow */}
@@ -104,27 +104,27 @@ const TechDetails = () => {
             }}>
                 <div className="flex items-center gap-2 mb-4">
                   <Code className="w-5 h-5 text-gray-700" />
-                  <h2 className="text-2xl font-bold">Our Approach</h2>
+                  <h2 className="text-2xl font-bold">我们的方法</h2>
                 </div>
                 
                 <p className="text-gray-600 mb-8 text-base max-w-3xl">
-                  At WRLDS, we've developed a systematic approach to creating smart textile solutions that combines technical innovation with practical implementation. 
-                  Our comprehensive development process ensures that every project moves efficiently from concept to market-ready product.
+                  在 WRLDS，我们开发了一套系统的方法来创建智能纺织解决方案，结合了技术创新与实际实施。 
+                  我们综合的开发过程确保每个项目都能高效地从概念转变为市场准备就绪的产品。
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                   {[{
-                  title: "Discovery",
+                  title: "发现",
                   icon: <Cpu className="w-5 h-5 text-gray-700" />,
-                  description: "We begin with thorough market research and requirements gathering to understand your specific needs and opportunities."
+                  description: "我们开始进行彻底的市场研究和需求收集，以了解您的具体需求和机会。"
                 }, {
-                  title: "Design & Prototyping",
+                  title: "设计与原型制作",
                   icon: <Code className="w-5 h-5 text-gray-700" />,
-                  description: "Our teams create initial designs and functional prototypes that allow for early testing and iteration."
+                  description: "我们的团队创建初始设计和功能原型，以允许早期测试和迭代。"
                 }, {
-                  title: "Development & Testing",
+                  title: "开发与测试",
                   icon: <FileText className="w-5 h-5 text-gray-700" />,
-                  description: "We rigorously develop and test all components to ensure they meet performance and reliability standards."
+                  description: "我们严格开发和测试所有组件，以确保它们符合性能和可靠性标准。"
                 }].map((phase, i) => <motion.div key={phase.title} initial={{
                   opacity: 0,
                   y: 10
@@ -147,7 +147,7 @@ const TechDetails = () => {
             
             <div className="mt-16 pt-8 border-t border-gray-200">
               <Link to="/development-process" className="inline-flex items-center px-5 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group">
-                Explore Our Development Process
+                探索我们的开发流程
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>

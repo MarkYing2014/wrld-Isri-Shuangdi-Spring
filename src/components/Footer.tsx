@@ -15,8 +15,8 @@ const Footer = () => {
     
     if (!email) {
       toast({
-        title: "Error",
-        description: "Please enter your email address.",
+        title: "出错!",
+        description: "请输入电子邮箱地址。",
         variant: "destructive"
       });
       return;
@@ -46,8 +46,8 @@ const Footer = () => {
       );
       
       toast({
-        title: "Success!",
-        description: "Thank you for subscribing to our newsletter.",
+        title: "成功!",
+        description: "感谢您订阅我们的通讯。",
         variant: "default"
       });
       
@@ -56,8 +56,8 @@ const Footer = () => {
       console.error("Error sending subscription:", error);
       
       toast({
-        title: "Error",
-        description: "There was a problem subscribing. Please try again later.",
+        title: "出错!",
+        description: "订阅时出现问题。请稍后重试。",
         variant: "destructive"
       });
     } finally {
@@ -76,7 +76,7 @@ const Footer = () => {
               className="h-10 w-auto mb-6 invert" // Added invert to make logo white
             />
             <p className="text-gray-300 mb-6">
-              WRLDS Technologies provides an end-to-end platform for the creation and deployment of AI-powered smart sensor devices, giving customers 100% ownership while handling the complete technological development.
+              WRLDS Technologies 提供端到端平台，用于创建和部署 AI 驱动的智能传感器设备，使客户获得 100% 的所有权，同时处理完整的技术开发。
             </p>
             <p className="text-gray-300 mb-6">
               Hornsgatan 110<br />
@@ -95,21 +95,21 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4 text-white">Company</h3>
+            <h3 className="text-lg font-bold mb-4 text-white">公司</h3>
             <ul className="space-y-3">
-              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/careers" className="text-gray-300 hover:text-white transition-colors">Careers</Link></li>
-              <li><Link to="/privacy-policy" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">关于我们</Link></li>
+              <li><Link to="/careers" className="text-gray-300 hover:text-white transition-colors">职业生涯</Link></li>
+              <li><Link to="/privacy-policy" className="text-gray-300 hover:text-white transition-colors">隐私政策</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4 text-white">Get in Touch</h3>
+            <h3 className="text-lg font-bold mb-4 text-white">联系我们</h3>
             <form className="space-y-4" onSubmit={handleSubscribe}>
               <div>
                 <input 
                   type="email" 
-                  placeholder="Your email" 
+                  placeholder="您的邮箱" 
                   className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-600 text-white placeholder-gray-400"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -121,9 +121,9 @@ const Footer = () => {
                 className="w-full px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : (
+                {isSubmitting ? "订阅中..." : (
                   <>
-                    Subscribe
+                    订阅
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </>
                 )}
@@ -134,10 +134,10 @@ const Footer = () => {
         
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} WRLDS Technologies. All rights reserved.
+            © {new Date().getFullYear()} WRLDS Technologies. 版权所有.
           </p>
           <div className="flex space-x-6">
-            <Link to="/privacy-policy" className="text-sm text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="text-sm text-gray-400 hover:text-white transition-colors">隐私政策</Link>
           </div>
         </div>
       </div>

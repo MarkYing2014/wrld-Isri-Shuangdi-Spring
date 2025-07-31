@@ -211,7 +211,7 @@ const InteractiveImage = ({ src, alt, className }: InteractiveImageProps) => {
                 }
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                Double-tap to reset
+                双击重置
               </p>
             </div>
           </div>
@@ -269,11 +269,11 @@ const InteractiveImage = ({ src, alt, className }: InteractiveImageProps) => {
           </PopoverTrigger>
           <PopoverContent className="w-72">
             <div className="space-y-2">
-              <h4 className="font-medium text-sm">Image Controls</h4>
+              <h4 className="font-medium text-sm">图片控制</h4>
               <div className="text-xs space-y-1">
-                <p className="flex items-center"><ZoomIn className="h-3 w-3 mr-2" /> Click image or zoom button to enlarge</p>
-                <p className="flex items-center"><Move className="h-3 w-3 mr-2" /> Click and drag to pan when zoomed in</p>
-                <p className="flex items-center"><ZoomOut className="h-3 w-3 mr-2" /> Double-click or use zoom out button to reset</p>
+                <p className="flex items-center"><ZoomIn className="h-3 w-3 mr-2" /> 点击图片或缩放按钮放大</p>
+                <p className="flex items-center"><Move className="h-3 w-3 mr-2" /> 点击并拖动以在放大时平移</p>
+                <p className="flex items-center"><ZoomOut className="h-3 w-3 mr-2" /> 双击或使用缩放按钮重置</p>
               </div>
             </div>
           </PopoverContent>

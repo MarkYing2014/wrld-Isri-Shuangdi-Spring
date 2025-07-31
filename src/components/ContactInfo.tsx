@@ -8,13 +8,13 @@ const ContactInfo = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-block mb-3 px-3 py-1 bg-white text-black rounded-full text-sm font-medium">
-            Get In Touch
+            联系我们
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            Contact Us Today
+            今天就联系我们
           </h2>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-            Have questions about our AI-powered sensor solutions? Reach out to our team and let's discuss how we can help bring your ideas to life.
+            您有关于我们的AI传感器解决方案的问题吗？请联系我们团队，讨论我们如何帮助您实现您的想法。
           </p>
         </div>
 

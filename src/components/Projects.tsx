@@ -8,9 +8,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const projects = [
   {
     id: 1,
-    title: "6th SENSE Safety System",
+    title: "第六代传感器安全系统",
     brand: "FireCat Group",
-    description: "AI-driven sensor solution integrated into uniforms for law enforcement, military and firefighters, providing real-time vital monitoring and situational awareness in high-risk environments.",
+    description: "AI驱动的传感器解决方案集成到制服中，用于执法、军事和消防人员，提供实时生命体征监测和高风险环境中的态势感知。",
     tags: ["Safety", "Military", "AI Sensors", "Real-time Monitoring"],
     imageUrl: "/lovable-uploads/93ab0638-8190-4ccf-897f-21fda7f4f5ad.png",
     isFeatured: true,
@@ -21,37 +21,37 @@ const projects = [
   },
   {
     id: 2,
-    title: "Performance Athletic Footwear",
-    brand: "Global Sports Retail Leader",
-    description: "Smart Footwear R&D aiming to revolutionize development, fitting, and testing of athletic footwear.",
-    tags: ["Sports", "R&D", "Footwear", "Athletic Performance"],
+    title: "运动鞋性能研发",
+    brand: "全球运动零售领导者",
+    description: "智能鞋研发，旨在革命化运动鞋的开发、尺寸调整和测试。",
+    tags: ["运动", "研发", "鞋类", "运动鞋性能"],
     imageUrl: "/lovable-uploads/b0622048-17b4-4c75-a3f0-6c9e17de1d09.png",
     link: "/projects/sport-retail"
   },
   {
     id: 3,
-    title: "Workwear Climate Control",
-    brand: "European Multinational Textile Producer",
-    description: "Fully integrated temperature controls for professionals working in extreme heat and cold. Modular approach to enable full-body systems.",
-    tags: ["Climate Control", "Workwear", "Temperature Regulation", "Extreme Conditions"],
+    title: "工作服气候控制",
+    brand: "欧洲跨国纺织生产商",
+    description: "为在极端高温和寒冷环境下工作的专业人士提供集成温度控制。模块化方法以启用全身系统。",
+    tags: ["气候控制", "工作服", "温度调节", "极端条件"],
     imageUrl: "/lovable-uploads/6b0637e9-4a7b-40d0-b219-c8b7f879f93e.png",
     link: "/projects/workwear"
   },
   {
     id: 4,
-    title: "Ice Hockey Elite Skill Tracker",
+    title: "冰球精英技能追踪器",
     brand: "Mars Blades",
-    description: "R&D product evaluating data from single IMU embedded in the hockey shoe. Aim: establish motion patterns that lead to ultimate acceleration, speed, and maneuverability.",
-    tags: ["Ice Hockey", "Motion Analysis", "Performance Tracking", "Sports"],
+    description: "R&D项目评估单IMU嵌入冰鞋的数据。目标：建立运动模式，最终实现终极加速、速度和机动性。",
+    tags: ["冰球", "运动分析", "性能追踪", "运动"],
     imageUrl: "/lovable-uploads/c30e0487-2fa0-41d1-9a0b-699cb2855388.png",
     link: "/projects/hockey"
   },
   {
     id: 5,
-    title: "Dog Activity Counter",
-    brand: "UK Insurance Giant",
-    description: "R&D project embedding a step counter in a dog collar. Measures daily activity and sends real-time data to the cloud for veterinary consultancies.",
-    tags: ["Pet Technology", "Insurance", "Activity Tracking", "R&D"],
+    title: "狗活动计数器",
+    brand: "英国保险公司",
+    description: "R&D项目嵌入狗项圈中的步数计数器。测量每日活动并实时发送数据到云端供兽医咨询使用。",
+    tags: ["宠物技术", "保险", "活动追踪", "R&D"],
     imageUrl: "/lovable-uploads/d5ce901e-2ce0-4f2a-bce1-f0ca5d6192df.png",
     link: "/projects/pet-tracker"
   }
@@ -130,13 +130,13 @@ const Projects = () => {
       <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className={`text-center mb-10 max-w-3xl mx-auto transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-block mb-2 px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
-            Customer Cases
+            客户案例
           </div>
           <h2 className="text-3xl font-bold mb-3">
-            From Textile to Intelligence
+            从纺织到智能
           </h2>
           <p className="text-gray-600">
-            Explore how our textile sensor technology is revolutionizing multiple industries with intelligent fabric solutions tailored to specific needs.
+            探索我们的纺织传感器技术如何通过智能纺织解决方案革新多个行业，以满足特定需求。
           </p>
           {isMobile && (
             <div className="flex items-center justify-center mt-4 animate-pulse-slow">
@@ -214,7 +214,7 @@ const Projects = () => {
                           }
                         }}
                       >
-                        <span className="relative z-10">Learn more</span>
+                        <span className="relative z-10">了解详情</span>
                         <ArrowRight className="ml-2 w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
                         <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
                       </Link>

@@ -86,10 +86,10 @@ const WhyWrlds = () => {
         margin: "-100px"
       }} variants={containerVariants}>
           <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
-            Why WRLDS?
+            为什么选择WRLDS?
           </motion.h2>
           <motion.p variants={itemVariants} className="text-gray-600 text-lg max-w-3xl mx-auto">
-            In an industry where complexity leads to failure, we bring simplicity and expertise to ensure your success
+            在一个复杂性导致失败的行业中，我们带来简单性和专业知识，以确保您的成功
           </motion.p>
         </motion.div>
         
@@ -104,7 +104,7 @@ const WhyWrlds = () => {
             <h3 className="text-gray-900 text-2xl lg:text-3xl font-bold mb-3">
               <AnimatedCounter end={3.8} decimals={1} suffix=" Billion" /> USD
             </h3>
-            <p className="text-gray-700">Market estimated to reach this value by 2030, with massive growth potential for smart textile solutions</p>
+            <p className="text-gray-700">市场预计到2030年将达到此价值，智能纺织解决方案的巨大增长潜力</p>
           </motion.div>
           
           <motion.div variants={itemVariants} className="bg-gray-100 p-6 rounded-xl border border-gray-200 text-center hover:bg-gray-200 transition-all">
@@ -115,7 +115,7 @@ const WhyWrlds = () => {
               <AnimatedCounter end={60} suffix="%" /> 
             </h3>
             <p className="text-gray-700">
-              of IoT projects stall at the proof-of-concept stage due to fragmented expertise and poor coordination
+              IoT项目在概念验证阶段停滞不前，由于专业知识分散和协调不足
             </p>
           </motion.div>
           
@@ -127,7 +127,7 @@ const WhyWrlds = () => {
               <AnimatedCounter end={80} suffix="%" />
             </h3>
             <p className="text-gray-700">
-              Increase in time-to-market for IoT products over the past four years, creating costly delays
+              过去四年IoT产品推向市场的增加，导致昂贵的延误
             </p>
           </motion.div>
         </motion.div>
@@ -138,10 +138,10 @@ const WhyWrlds = () => {
         }} variants={containerVariants}>
           <motion.div variants={itemVariants} className="text-center mb-8">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-              What WRLDS Does for You
+              WRLDS为您做什么
             </h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We transform your ideas into market-ready solutions with tangible benefits for your business
+              我们将您的想法转化为具有实际业务效益的市场解决方案
             </p>
           </motion.div>
           
@@ -152,8 +152,8 @@ const WhyWrlds = () => {
                   <BarChart className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">New Revenue Products</h4>
-                  <p className="text-gray-700">Create high-margin, sensor-enabled products for new revenue streams.</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">新收入产品</h4>
+                  <p className="text-gray-700">为新收入流创建高利润率、传感器启用的产品。</p>
                 </div>
               </div>
             </motion.div>
@@ -164,8 +164,8 @@ const WhyWrlds = () => {
                   <Sparkles className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Innovation That Attracts</h4>
-                  <p className="text-gray-700">Break through to dream clients with tech that makes you stand out.</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">创新吸引客户</h4>
+                  <p className="text-gray-700">突破技术，吸引梦想客户，使您脱颖而出。</p>
                 </div>
               </div>
             </motion.div>
@@ -176,8 +176,8 @@ const WhyWrlds = () => {
                   <Zap className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Comfort-Zone Development</h4>
-                  <p className="text-gray-700">We develop frontier tech while you stay in your comfort zone.</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">舒适区开发</h4>
+                  <p className="text-gray-700">我们开发前沿技术，您保持舒适区。</p>
                 </div>
               </div>
             </motion.div>
@@ -188,8 +188,8 @@ const WhyWrlds = () => {
                   <Rocket className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Brand-Building Leaps</h4>
-                  <p className="text-gray-700">We enable hardware/software leaps that define your brand's future.</p>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">品牌建设飞跃</h4>
+                  <p className="text-gray-700">我们启用硬件/软件飞跃，定义您的品牌未来。</p>
                 </div>
               </div>
             </motion.div>
@@ -201,7 +201,7 @@ const WhyWrlds = () => {
               onClick={() => window.scrollTo(0, 0)}
               className="inline-flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group"
             >
-              Learn more about our structured development process
+              了解我们的结构化开发流程
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

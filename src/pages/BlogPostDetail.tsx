@@ -100,7 +100,20 @@ const BlogPostDetail = () => {
         {/* Article Content */}
         <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
           <div className="max-w-4xl mx-auto">
-            <EnhancedBlogContent content={post.content} />
+            {(() => {
+              try {
+                return <EnhancedBlogContent content={post.content} />;
+              } catch (error) {
+                console.error('Error rendering blog content:', error);
+                return (
+                  <div className="text-red-600 p-4 border border-red-300 rounded">
+                    <h3 className="font-bold mb-2">Error rendering content</h3>
+                    <p>There was an error rendering the blog post content.</p>
+                    <pre className="mt-2 text-sm">{error.toString()}</pre>
+                  </div>
+                );
+              }
+            })()}
           </div>
         </div>
       </article>
