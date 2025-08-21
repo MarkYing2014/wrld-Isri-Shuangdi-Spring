@@ -4,7 +4,6 @@ import { useEffect, useState, useCallback } from 'react';
 export const useScrollHijack = (sectionRef: React.RefObject<HTMLElement>, itemCount: number) => {
   const [isHijacked, setIsHijacked] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const handleScroll = useCallback((e: Event) => {
     if (!sectionRef.current) return;
@@ -142,6 +141,5 @@ export const useScrollHijack = (sectionRef: React.RefObject<HTMLElement>, itemCo
   return {
     isHijacked,
     currentIndex,
-    scrollProgress
   };
 };
