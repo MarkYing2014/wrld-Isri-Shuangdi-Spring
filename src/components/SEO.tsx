@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface SEOProps {
   title?: string;
@@ -17,72 +18,48 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'WRLDS',
-  description = 'WRLDS Technologies: Pioneering smart engineering solutions with textile sensors for sports, safety, and performance monitoring.',
+  title,
+  description,
   type = 'website',
-  name = 'WRLDS Technologies',
+  name,
   imageUrl = '/lovable-uploads/48ecf6e2-5a98-4a9d-af6f-ae2265cd4098.png',
   publishDate,
   modifiedDate,
   author,
   category,
-  keywords = ['smart textiles', 'wearable technology', 'textile sensors', 'sports tech', 'safety monitoring', 'performance analytics'],
+  keywords,
   isBlogPost = false
 }) => {
+  const { t } = useTranslation();
   const location = useLocation();
-  const currentUrl = `https://wrlds.com${location.pathname}`;
-  const absoluteImageUrl = imageUrl.startsWith('http') ? imageUrl : `https://wrlds.com${imageUrl}`;
+  
+  // Use i18n translations as defaults
+  const defaultTitle = title || t('seo.defaultTitle');
+  const defaultDescription = description || t('seo.defaultDescription');
+  const defaultName = name || t('seo.companyName');
+  const defaultKeywords = keywords || (t('seo.keywords', { returnObjects: true }) as string[]);
+  const currentUrl = `https://isri-shuangdi.com${location.pathname}`;
+  const absoluteImageUrl = imageUrl.startsWith('http') ? imageUrl : `https://isri-shuangdi.com${imageUrl}`;
 
   // Enhanced keywords for specific posts
-  const enhancedKeywords = location.pathname.includes('smart-ppe-revolution') 
-    ? [
-        ...keywords,
-        'personal protective equipment',
-        'workplace safety solutions',
-        'smart safety gear',
-        'construction safety technology',
-        'industrial safety monitoring',
-        'occupational health technology',
-        'safety compliance',
-        'worker protection systems',
-        'smart hard hats',
-        'connected safety equipment'
-      ]
-    : location.pathname.includes('wearable-safety-tech-protecting-workers-roi')
-    ? [
-        ...keywords,
-        'workplace injury costs',
-        'safety ROI',
-        'workers compensation savings',
-        'ergonomic sensors',
-        'workplace safety investment',
-        'safety technology ROI',
-        'industrial wearables',
-        'safety cost reduction',
-        'occupational safety economics',
-        'safety technology partnerships',
-        'workplace injury statistics',
-        'safety equipment financing',
-        'injury prevention technology'
-      ]
-    : keywords;
+  const enhancedKeywords = defaultKeywords;
 
   // Create base Organization JSON-LD structured data
   const organizationStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'WRLDS Technologies',
-    url: 'https://wrlds.com',
-    logo: 'https://wrlds.com/lovable-uploads/14ea3fe0-19d6-425c-b95b-4117bc41f3ca.png',
-    description: 'Pioneering smart engineering solutions with textile sensors',
+    name: defaultName,
+    url: 'https://isri-shuangdi.com',
+    logo: 'https://isri-shuangdi.com/lovable-uploads/14ea3fe0-19d6-425c-b95b-4117bc41f3ca.png',
+    description: defaultDescription,
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      email: 'info@wrlds.com'
+      email: 'info@isri-shuangdi.com'
     },
     sameAs: [
-      'https://www.linkedin.com/company/wrlds-technologies',
-      'https://twitter.com/wrldstechnologies'
+      'https://www.linkedin.com/company/isringhausen',
+      'https://twitter.com/isringhausen'
     ]
   };
 
@@ -94,7 +71,7 @@ const SEO: React.FC<SEOProps> = ({
       '@type': 'WebPage',
       '@id': currentUrl
     },
-    headline: title,
+    headline: defaultTitle,
     image: {
       '@type': 'ImageObject',
       url: absoluteImageUrl,
@@ -105,21 +82,21 @@ const SEO: React.FC<SEOProps> = ({
     dateModified: modifiedDate || publishDate,
     author: {
       '@type': 'Organization',
-      name: author || 'WRLDS Technologies',
-      url: 'https://wrlds.com'
+      name: author || defaultName,
+      url: 'https://isri-shuangdi.com'
     },
     publisher: {
       '@type': 'Organization',
-      name: 'WRLDS Technologies',
+      name: defaultName,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://wrlds.com/lovable-uploads/14ea3fe0-19d6-425c-b95b-4117bc41f3ca.png',
+        url: 'https://isri-shuangdi.com/lovable-uploads/14ea3fe0-19d6-425c-b95b-4117bc41f3ca.png',
         width: 512,
         height: 512
       },
-      url: 'https://wrlds.com'
+      url: 'https://isri-shuangdi.com'
     },
-    description: description,
+    description: defaultDescription,
     keywords: enhancedKeywords.join(', '),
     articleSection: category,
     inLanguage: 'en-US',
@@ -197,8 +174,8 @@ const SEO: React.FC<SEOProps> = ({
 
   return (
     <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <title>{defaultTitle}</title>
+      <meta name="description" content={defaultDescription} />
       <link rel="canonical" href={currentUrl} />
       <meta name="keywords" content={keywordString} />
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -206,33 +183,33 @@ const SEO: React.FC<SEOProps> = ({
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={isBlogPost ? 'article' : type} />
       <meta property="og:url" content={currentUrl} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={defaultTitle} />
+      <meta property="og:description" content={defaultDescription} />
       <meta property="og:image" content={absoluteImageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="WRLDS Technologies" />
+      <meta property="og:site_name" content={defaultName} />
       <meta property="og:locale" content="en_US" />
       {isBlogPost && category && <meta property="article:section" content={category} />}
       {isBlogPost && publishDate && <meta property="article:published_time" content={publishDate} />}
       {isBlogPost && modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
-      {isBlogPost && <meta property="article:publisher" content="https://wrlds.com" />}
+      {isBlogPost && <meta property="article:publisher" content="https://isri-shuangdi.com" />}
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={currentUrl} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={defaultTitle} />
+      <meta name="twitter:description" content={defaultDescription} />
       <meta name="twitter:image" content={absoluteImageUrl} />
-      <meta name="twitter:site" content="@wrldstechnologies" />
-      <meta name="twitter:creator" content="@wrldstechnologies" />
+      <meta name="twitter:site" content="@isringhausen" />
+      <meta name="twitter:creator" content="@isringhausen" />
       
       {/* LinkedIn specific */}
       <meta property="og:image:secure_url" content={absoluteImageUrl} />
-      <meta name="author" content={author || name} />
+      <meta name="author" content={author || defaultName} />
       
       {/* Pinterest specific */}
-      <meta name="pinterest:description" content={description} />
+      <meta name="pinterest:description" content={defaultDescription} />
       <meta name="pinterest:image" content={absoluteImageUrl} />
       
       {/* Additional SEO meta tags */}

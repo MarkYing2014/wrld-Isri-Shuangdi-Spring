@@ -1,0 +1,442 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于我们",
+    "products": "产品",
+    "careers": "职业生涯",
+    "contact": "联系我们",
+    "blog": "博客",
+    "language": "语言"
+  },
+  "contact": {
+    "header": {
+      "badge": "联系我们",
+      "title": "今天就联系我们",
+      "description": "您有关于我们的弹簧解决方案的问题吗？请联系我们团队，讨论我们如何帮助您实现您的想法。"
+    },
+    "linkedin": "领英主页",
+    "people": {
+      "felix": {
+        "name": "马克·应",
+        "role": "销售经理"
+      },
+      "love": {
+        "name": "洛薇·安德伯格",
+        "role": "运营经理"
+      }
+    }
+  },
+  "products": {
+    "couplingsprings": {
+      "title": "联轴器弹簧",
+      "description": "高精度联轴器弹簧解决方案",
+      "heroDescription": "专为要求严苛的动力总成应用而设计，实现最大扭矩传输和错位补偿。",
+      "features": [
+        {
+          "title": "高扭矩容量",
+          "description": "设计用于承受高水平扭矩，确保在重载下性能可靠。"
+        },
+        {
+          "title": "振动阻尼",
+          "description": "有效吸收和抑制扭转振动，保护传动系统组件。"
+        },
+        {
+          "title": "错位补偿",
+          "description": "适应平行、角度和轴向错位，减少连接轴的磨损。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "50%",
+          "label": "振动减少"
+        },
+        {
+          "value": "1000万+",
+          "label": "循环耐久性"
+        },
+        {
+          "value": "3°",
+          "label": "角度错位"
+        }
+      ]
+    },
+    "bowsprings": {
+      "title": "弓形弹簧",
+      "description": "专业弓形弹簧制造",
+      "heroDescription": "我们的弓形弹簧提供一致的径向力和柔韧性，是离合器和变速器系统的理想选择。",
+      "features": [
+        {
+          "title": "一致的径向力",
+          "description": "提供均匀的压力分布，实现平稳的接合和分离。"
+        },
+        {
+          "title": "高疲劳寿命",
+          "description": "采用优质材料制造，可承受数百万次循环而无故障。"
+        },
+        {
+          "title": "紧凑设计",
+          "description": "提供高力尺寸比，非常适合空间有限的应用。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "±5%",
+          "label": "力一致性"
+        },
+        {
+          "value": "2000万+",
+          "label": "循环寿命"
+        },
+        {
+          "value": "250°C",
+          "label": "最高工作温度"
+        }
+      ]
+    },
+    "torsionsprings": {
+      "title": "扭转弹簧",
+      "description": "定制扭转弹簧系统",
+      "heroDescription": "定制设计的扭转弹簧，可施加扭矩或储存旋转能量，根据您的特定应用需求量身定制。",
+      "features": [
+        {
+          "title": "自定义扭矩曲线",
+          "description": "经工程设计，可在特定角度位置提供精确扭矩。"
+        },
+        {
+          "title": "广泛的材料选择",
+          "description": "提供多种材料选择，包括不锈钢和特种合金，适用于任何环境。"
+        },
+        {
+          "title": "多样的末端样式",
+          "description": "提供多种腿端配置，以适应各种安装要求。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "360°+",
+          "label": "旋转能力"
+        },
+        {
+          "value": "0.1-50 Nm",
+          "label": "扭矩范围"
+        },
+        {
+          "value": "100%",
+          "label": "可定制设计"
+        }
+      ]
+    },
+    "tensionsprings": {
+      "title": "拉伸弹簧",
+      "description": "高强度拉伸弹簧",
+      "heroDescription": "高性能拉伸弹簧，设计用于承受拉伸载荷，提供可靠的回复力。",
+      "features": [
+        {
+          "title": "高初始张力",
+          "description": "经制造可达到特定的初始张力，以获得安全和即时的力。"
+        },
+        {
+          "title": "多样的钩端",
+          "description": "提供广泛的钩环配置，确保轻松集成到您的装配中。"
+        },
+        {
+          "title": "卓越的耐用性",
+          "description": "由高抗拉材料构成，确保在持续应力下具有较长的使用寿命。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "5000N",
+          "label": "最大承载能力"
+        },
+        {
+          "value": "1500万+",
+          "label": "疲劳寿命周期"
+        },
+        {
+          "value": "99.9%",
+          "label": "材料纯度"
+        }
+      ]
+    },
+    "springsystem": {
+      "title": "弹簧系统",
+      "description": "完整弹簧系统解决方案",
+      "heroDescription": "集成的弹簧系统和组件，结合多个部件以执行复杂的机械功能。",
+      "features": [
+        {
+          "title": "完全集成的组件",
+          "description": "我们设计和制造完整的子组件，以便无缝集成到您的产品中。"
+        },
+        {
+          "title": "多功能设计",
+          "description": "我们的系统结合了各种弹簧类型和组件，以实现复杂的运动和力曲线。"
+        },
+        {
+          "title": "优化的性能",
+          "description": "每个系统都经过仿真和测试，以确保最佳性能、可靠性和成本效益。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "-40%",
+          "label": "装配时间减少"
+        },
+        {
+          "value": "10+",
+          "label": "集成组件"
+        },
+        {
+          "value": "100%",
+          "label": "系统级测试"
+        }
+      ]
+    },
+    "valvesprings": {
+      "title": "气门弹簧",
+      "description": "汽车气门弹簧专家",
+      "heroDescription": "高性能气门弹簧，经工程设计可承受现代高转速发动机的极端条件。",
+      "features": [
+        {
+          "title": "高频耐久性",
+          "description": "设计用于防止气门漂浮并在高发动机转速下保持稳定性。"
+        },
+        {
+          "title": "先进材料",
+          "description": "采用超洁净的铬硅和其他高强度合金，以实现最长的寿命和性能。"
+        },
+        {
+          "title": "应力消除和喷丸处理",
+          "description": "所有弹簧都经过先进的制造工艺，以增强疲劳强度和耐用性。"
+        }
+      ],
+      "stats": [
+        {
+          "value": "10,000+",
+          "label": "RPM 能力"
+        },
+        {
+          "value": "1亿+",
+          "label": "循环耐久性"
+        },
+        {
+          "value": "<2%",
+          "label": "高温下载荷损失"
+        }
+      ]
+    },
+    "featuresTitle": "产品特性",
+    "cta": {
+      "title": "准备好开始您的项目了吗？",
+      "description": "我们的专家团队随时准备帮助您找到满足您需求的完美弹簧解决方案。立即联系我们讨论您的要求。",
+      "button": "联系我们"
+    }
+  },
+  "languages": {
+    "chinese": "中文",
+    "english": "English"
+  },
+  "seo": {
+    "defaultTitle": "伊思灵双第弹簧",
+    "defaultDescription": "伊思灵双第弹簧: 提供符合IATF16949等国际标准的高质量解决方案。",
+    "companyName": "伊思灵双第弹簧",
+    "keywords": ["精密弹簧", "精密零部件", "汽车弹簧", "精密制造", "质量保证", "测试", "全球供应链管理"]
+  },
+  "hero": {
+    "title": "双第精工 · 匠德铸华",
+    "subtitle": "每一圈精密弹簧，都在为全球汽车工业提供核心动力",
+    "exploreProjects": "探索项目",
+    "contactUs": "联系我们",
+    "feature1": {
+      "title": "全球与本土结合",
+      "description": "汇聚伊思灵百年传承与双第先进制造实力。"
+    },
+    "feature2": {
+      "title": "精密产品",
+      "description": "专注于离合器、动力总成、转向、制动与悬挂系统的弹簧与部件。"
+    },
+    "feature3": {
+      "title": "认证品质",
+      "description": "符合IATF16949等国际标准，确保产品质量与性能。"
+    }
+  },
+  "about": {
+    "title": "关于伊思灵双第弹簧",
+    "subtitle": "自1919年以来的精密工程卓越",
+    "description": "浙江伊思灵双第弹簧有限公司是德国ISRINGHAUSEN集团与浙江双第弹簧有限公司的合资企业，融合德国精密工程与中国制造专业知识。我们专业生产汽车弹簧和精密零部件，为全球领先主机厂提供符合IATF16949等国际标准的高质量解决方案。",
+    "backToHome": "返回首页",
+    "mission": {
+      "title": "我们的使命",
+      "description": "为全球领先的汽车主机厂提供精密弹簧和零部件，推动创新发展"
+    },
+    "capabilities": {
+      "title": "我们的能力",
+      "items": [
+        "各种规格的汽车弹簧",
+        "精密冲压件部件",
+        "定制弹簧解决方案",
+        "精密制造",
+        "质量保证与测试",
+        "全球供应链管理"
+      ]
+    },
+    "story": {
+      "title": "我们的故事",
+      "heritage": {
+        "title": "传承",
+        "description": "超过一个世纪的德国精密工程，在汽车弹簧技术领域制定全球标准。"
+      },
+      "partnership": {
+        "title": "合作",
+        "description": "合资企业融合德国工程卓越与中国制造专业知识。"
+      },
+      "innovation": {
+        "title": "创新",
+        "description": "为全球汽车领导者提供具有认证质量的尖端弹簧解决方案。"
+      }
+    },
+    "team": {
+      "title": "我们的团队",
+      "description": "我们的团队融合了国际专家和本地专家，结合工程卓越与深厚的行业经验。",
+      "members": {
+        "felix": {
+          "name": "菲利普·冯·海尔兰德",
+          "role": "首席执行官兼创始人",
+          "bio": "在汽车悬架系统和精密弹簧制造方面具有专业知识，领导伊斯琳沃森-双第弹簧。"
+        },
+        "niek": {
+          "name": "尼克·比曼",
+          "role": "工程总监",
+          "bio": "专业从事先进弹簧设计和金属学，确保汽车应用中的最佳性能。"
+        },
+        "chengjie": {
+          "name": "李成杰",
+          "role": "制造主管",
+          "bio": "精通精密弹簧生产工艺和汽车零部件质量控制系统。"
+        },
+        "love": {
+          "name": "Love", 
+          "role": "首席运营官",
+          "bio": "监管大批量汽车弹簧生产的运营和供应链管理。"
+        }
+      },
+      "joinTeam": "加入我们的团队"
+    }
+  },
+  "footer": {
+    "logoAlt": "双第精密弹簧 Logo",
+    "description1": "双第精密弹簧，专注于离合器、动力总成、转向、制动与悬挂系统的弹簧与部件。",
+    "description2": "每一圈精密弹簧，都在为全球汽车工业提供核心动力",
+    "company": "公司",
+    "aboutUs": "关于我们",
+    "careers": "职业生涯",
+    "privacyPolicy": "隐私政策",
+    "contactUs": "联系我们",
+    "emailPlaceholder": "您的邮箱",
+    "subscribe": "订阅",
+    "subscribing": "订阅中...",
+    "copyright": "版权所有",
+    "toastError": "出错!",
+    "toastSuccess": "成功!",
+    "emailRequired": "请输入电子邮箱地址。",
+    "subscribeSuccess": "感谢您订阅我们的通讯。",
+    "subscribeError": "订阅时出现问题。请稍后重试。"
+  },
+  "features": {
+    "sectionTitle": "应用领域",
+    "sectionDescription": "我们的弹簧产品广泛应用于汽车、航天、能源和机器人等关键行业，为全球提供可靠的动力与创新解决方案。",
+    "automotiveTitle": "汽车工业",
+    "automotiveDescription": "精密弹簧广泛应用于离合器、动力总成、转向、制动和悬挂系统，保障车辆的安全与性能。",
+    "aerospaceTitle": "航天工业",
+    "aerospaceDescription": "高强度弹簧用于飞行器、卫星和航天设备，确保在极端环境下的可靠性和稳定性。",
+    "energyTitle": "能源工业",
+    "energyDescription": "弹簧应用于风电、核电、石油化工等能源装备中，为系统提供耐用的弹性解决方案。",
+    "roboticsTitle": "机器人工业",
+    "roboticsDescription": "在自动化与机器人领域，精密弹簧用于运动控制和减震，提升灵活性与耐久性。",
+    "customSolutionButton": "需要定制解决方案?",
+    "learnTechnologyButton": "了解我们的技术",
+    "customProcessTitle": "定制化流程",
+    "howItWorksTitle": "我们的技术如何工作",
+    "howItWorksDescription": "使用专有和现成的硬件和软件，允许我们以高速和较低风险开发完全独特的解决方案。",
+    "step1Title": "需求定义",
+    "step1Description": "对接应用场景与技术指标：尺寸/载荷/寿命/环境与标准；接收图纸或3D/CAD，明确边界条件与质量目标。",
+    "step2Title": "工程设计与快速打样",
+    "step2Description": "材料与线径选择、弹簧几何与公差设计；仿真校核（应力/疲劳/热/振动），样件快速加工与实验室测试（力—程曲线、疲劳寿命、一致性）。",
+    "step3Title": "验证量产与持续优化",
+    "step3Description": "按 IATF16949/PPAP 验证，建立工艺窗口与SPC管控；批量生产与追溯；依据现场数据持续改进，支持版本迭代与降本增效。",
+    "adaptiveProjectTitle": "适应性项目",
+    "iterativeDevelopment": "与客户迭代开发以满足其需求",
+    "planningPhase": "规划",
+    "developmentPhase": "开发",
+    "testingPhase": "测试",
+    "reviewPhase": "评审",
+    "feedbackIntegration": "客户反馈集成在每个阶段",
+    "continuousImprovement": "持续改进",
+    "marketLaunchTitle": "推向市场",
+    "marketLaunchDescription": "准备扩大规模，生产并推出",
+    "learnMoreButton": "了解更多关于我们技术",
+    "contactExpertButton": "联系我们的专家",
+    "sensorApplications": "纺织传感器应用",
+    "realWorldScenarios": "实际应用场景",
+    "scenariosDescription": "探索我们的纺织传感技术如何应用于不同的专业领域，从紧急响应到建筑和运动。",
+    "scrollForMore": "水平滚动查看更多实例 →",
+    "sensorPerformance": "这些实例展示了我们的纺织传感器如何增强安全和性能",
+    "hoverCardStep1": "我们的专有技术为每个解决方案提供核心基础。",
+    "hoverCardStep2": "我们仔细选择最佳的现成组件来补充我们的专有技术。",
+    "hoverCardStep3": "我们的生产合作伙伴确保大规模制造的质量。"
+  },
+  "whyWrlds": {
+    "title": "为什么选择伊思灵双第?",
+    "subtitle": "融合德国 ISRINGHAUSEN 百年精密弹簧制造经验与浙江双第的本土制造实力，兼具国际先进技术与本地化服务能力",
+    "heritage": "德国 ISRINGHAUSEN 百年传承，全球领先的弹簧技术与制造经验。",
+    "certifications": "4 大国际认证，确保产品质量与性能。",
+    "clients": "30+ 行业客户，确保产品质量与性能。",
+    "whatWeDoTitle": "伊思灵双第为您做什么",
+    "whatWeDoSubtitle": "我们将您的想法转化为具有实际业务效益的市场解决方案",
+    "newRevenueTitle": "新收入产品",
+    "newRevenueDescription": "开发高附加值的精密弹簧产品，满足汽车、航天、能源和机器人等行业的新兴需求。",
+    "customerAttractionTitle": "创新吸引客户",
+    "customerAttractionDescription": "以领先的弹簧设计与制造技术，赢得全球客户信赖。",
+    "comfortZoneTitle": "舒适区开发",
+    "comfortZoneDescription": "我们攻克极端工况的技术挑战，让您的产品始终可靠。",
+    "brandBuildingTitle": "品牌建设飞跃",
+    "brandBuildingDescription": "通过世界级的弹簧技术与质量标准，助力您的品牌迈向未来。",
+    "learnMoreButton": "了解我们的结构化开发流程"
+  },
+  "projects": {
+    "tag": "客户案例",
+    "title": "全球客户的信赖之选",
+    "subtitle": "从汽车巨头到航空航天，我们的精密弹簧技术赢得了全球客户的信赖。",
+    "swipeToNavigate": "滑动浏览",
+    "zf": {
+      "title": "汽车零部件",
+      "brand": "ZF (采埃孚)",
+      "description": "全球汽车零部件巨头",
+      "testimonial": "“伊思灵双第提供的弹簧产品在耐久性和精密度方面始终超出我们的要求。他们对质量与创新的坚持，使其成为我们全球供应链中值得信赖的合作伙伴。”"
+    },
+    "valeo": {
+      "title": "动力总成系统",
+      "brand": "Valeo (法雷奥)",
+      "description": "一级动力总成供应商",
+      "testimonial": "“他们的离合器和动力总成弹簧具备卓越的精密设计。精益生产与严格测试让我们对每一批次的零部件都充满信心。”"
+    },
+    "tesla": {
+      "title": "电动汽车悬挂",
+      "brand": "Tesla (特斯拉)",
+      "description": "电动汽车制造商",
+      "testimonial": "“创新驱动着电动车市场，而他们定制化的悬挂弹簧帮助我们在全球范围内为客户带来了安全与舒适的驾乘体验。”"
+    },
+    "aerospace": {
+      "title": "航空航天系统",
+      "brand": "航空航天设备供应商",
+      "description": "先进材料与严格测试确保系统符合最高国际标准",
+      "testimonial": "“在极端工况下的可靠性至关重要。他们先进的材料与严格的测试确保了我们的航天系统能够符合最高国际标准。”"
+    },
+    "robotics": {
+      "title": "机器人与自动化",
+      "brand": "机器人与自动化企业",
+      "description": "精密弹簧是机器人系统的核心部件，提供平稳可靠的运动控制",
+      "testimonial": "“他们的精密弹簧是我们机器人系统的核心部件。其一致性与灵敏度为关键的自动化应用提供了平稳而可靠的运动控制。”"
+    }
+  }
+}

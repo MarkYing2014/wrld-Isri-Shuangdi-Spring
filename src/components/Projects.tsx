@@ -1,63 +1,56 @@
-
 import { useState, useRef, useEffect, TouchEvent } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const projects = [
   {
     id: 1,
-    title: "第六代传感器安全系统",
-    brand: "FireCat Group",
-    description: "AI驱动的传感器解决方案集成到制服中，用于执法、军事和消防人员，提供实时生命体征监测和高风险环境中的态势感知。",
-    tags: ["Safety", "Military", "AI Sensors", "Real-time Monitoring"],
-    imageUrl: "/lovable-uploads/93ab0638-8190-4ccf-897f-21fda7f4f5ad.png",
-    isFeatured: true,
-    link: "/projects/firecat",
-    details: `
-      FireCat Group aimed to enhance safety in high-risk environments. WRLDS Technologies provided the 6th SENSE solution with secure real-time data transmission, high-quality sensors resistant to extreme conditions, integrated AI-powered clothing, and a centralized control unit. Features include Man Down Alarm, GPS positioning, vital sign monitoring, and Panic Button. Benefits: life-saving technology, machine learning preventing false alarms, durable hardware with 7-10 year lifespan, washable sensors, and Plug & Play installation with 12-20 hours of operation per charge.
-    `
+    titleKey: 'projects.zf.title',
+    brandKey: 'projects.zf.brand',
+    descriptionKey: 'projects.zf.description',
+    testimonialKey: 'projects.zf.testimonial',
+    image: '/lovable-uploads/ZFimage.jpg',
   },
   {
     id: 2,
-    title: "运动鞋性能研发",
-    brand: "全球运动零售领导者",
-    description: "智能鞋研发，旨在革命化运动鞋的开发、尺寸调整和测试。",
-    tags: ["运动", "研发", "鞋类", "运动鞋性能"],
-    imageUrl: "/lovable-uploads/b0622048-17b4-4c75-a3f0-6c9e17de1d09.png",
-    link: "/projects/sport-retail"
+    titleKey: 'projects.valeo.title',
+    brandKey: 'projects.valeo.brand',
+    descriptionKey: 'projects.valeo.description',
+    testimonialKey: 'projects.valeo.testimonial',
+    image: '/lovable-uploads/ValeoPic.jpg',
   },
   {
     id: 3,
-    title: "工作服气候控制",
-    brand: "欧洲跨国纺织生产商",
-    description: "为在极端高温和寒冷环境下工作的专业人士提供集成温度控制。模块化方法以启用全身系统。",
-    tags: ["气候控制", "工作服", "温度调节", "极端条件"],
-    imageUrl: "/lovable-uploads/6b0637e9-4a7b-40d0-b219-c8b7f879f93e.png",
-    link: "/projects/workwear"
+    titleKey: 'projects.tesla.title',
+    brandKey: 'projects.tesla.brand',
+    descriptionKey: 'projects.tesla.description',
+    testimonialKey: 'projects.tesla.testimonial',
+    image: '/lovable-uploads/TeslaPic.jpg',
   },
   {
     id: 4,
-    title: "冰球精英技能追踪器",
-    brand: "Mars Blades",
-    description: "R&D项目评估单IMU嵌入冰鞋的数据。目标：建立运动模式，最终实现终极加速、速度和机动性。",
-    tags: ["冰球", "运动分析", "性能追踪", "运动"],
-    imageUrl: "/lovable-uploads/c30e0487-2fa0-41d1-9a0b-699cb2855388.png",
-    link: "/projects/hockey"
+    titleKey: 'projects.aerospace.title',
+    brandKey: 'projects.aerospace.brand',
+    descriptionKey: 'projects.aerospace.description',
+    testimonialKey: 'projects.aerospace.testimonial',
+    image: '/lovable-uploads/areospace.jpeg',
   },
   {
     id: 5,
-    title: "狗活动计数器",
-    brand: "英国保险公司",
-    description: "R&D项目嵌入狗项圈中的步数计数器。测量每日活动并实时发送数据到云端供兽医咨询使用。",
-    tags: ["宠物技术", "保险", "活动追踪", "R&D"],
-    imageUrl: "/lovable-uploads/d5ce901e-2ce0-4f2a-bce1-f0ca5d6192df.png",
-    link: "/projects/pet-tracker"
+    titleKey: 'projects.robotics.title',
+    brandKey: 'projects.robotics.brand',
+    descriptionKey: 'projects.robotics.description',
+    testimonialKey: 'projects.robotics.testimonial',
+    image: '/lovable-uploads/RoboticPic.jpg',
   }
 ];
 
 const Projects = () => {
+  const { t } = useTranslation();
   const [activeProject, setActiveProject] = useState(0);
   const projectsRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -130,19 +123,19 @@ const Projects = () => {
       <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className={`text-center mb-10 max-w-3xl mx-auto transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-block mb-2 px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
-            客户案例
+           {t('projects.tag')}
           </div>
           <h2 className="text-3xl font-bold mb-3">
-            从纺织到智能
+            {t('projects.title')}
           </h2>
           <p className="text-gray-600">
-            探索我们的纺织传感器技术如何通过智能纺织解决方案革新多个行业，以满足特定需求。
+          {t('projects.subtitle')}
           </p>
           {isMobile && (
             <div className="flex items-center justify-center mt-4 animate-pulse-slow">
               <div className="flex items-center text-blue-500">
                 <ChevronLeft size={16} />
-                <p className="text-sm mx-1">Swipe to navigate</p>
+                <p className="text-sm mx-1">{t('projects.swipeToNavigate')}</p>
                 <ChevronRight size={16} />
               </div>
             </div>
@@ -169,55 +162,36 @@ const Projects = () => {
                   <div 
                     className="relative bg-black p-6 flex items-center justify-center h-48 overflow-hidden"
                     style={{
-                      backgroundImage: `url(${project.imageUrl})`,
+                      backgroundImage: `url(${project.image})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center'
                     }}
                   >
                     <div className="absolute inset-0 bg-black/50"></div>
                     <div className="relative z-10 flex flex-col items-center justify-center">
-                      <h3 className="text-2xl font-bold text-white mb-2">{project.brand.toUpperCase()}</h3>
+                      <h3 className="text-2xl font-bold text-white mb-2">{t(project.brandKey).toUpperCase()}</h3>
                       <div className="w-12 h-1 bg-white mb-2"></div>
-                      <p className="text-white/90 text-sm">{project.title}</p>
+                      <p className="text-white/90 text-sm">{t(project.titleKey)}</p>
                     </div>
                   </div>
                   
                   <CardContent className="p-6 flex flex-col flex-grow">
                     <div className="mb-4">
                       <h3 className="text-xl font-bold mb-1 text-gray-800 group-hover:text-gray-500 transition-colors">
-                        {project.title}
+                        {t(project.titleKey)}
                       </h3>
-                      <p className="text-gray-500 text-sm font-medium">{project.brand}</p>
+                      <p className="text-gray-500 text-sm font-medium">{t(project.brandKey)}</p>
                     </div>
                     
-                    <p className="text-gray-600 text-sm mb-4 flex-grow">{project.description}</p>
+                    <p className="text-gray-600 text-sm mb-4 flex-grow">{t(project.descriptionKey)}</p>
                     
                     <div className="mt-auto">
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag, idx) => (
-                          <span 
-                            key={idx} 
-                            className="px-2 py-1 bg-gray-50 text-gray-600 rounded-full text-xs animate-pulse-slow" 
-                            style={{ animationDelay: `${idx * 300}ms` }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <blockquote className="text-gray-600 italic">
+                          <Quote className="w-5 h-5 text-gray-300 inline-block mr-2" />
+                          {t(project.testimonialKey)}
+                        </blockquote>
                       </div>
-                      
-                      <Link 
-                        to={project.link} 
-                        className="text-gray-500 flex items-center hover:underline relative overflow-hidden group"
-                        onClick={() => {
-                          if (project.link.startsWith('/')) {
-                            window.scrollTo(0, 0);
-                          }
-                        }}
-                      >
-                        <span className="relative z-10">了解详情</span>
-                        <ArrowRight className="ml-2 w-4 h-4 relative z-10 transition-transform group-hover:translate-x-1" />
-                        <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
-                      </Link>
                     </div>
                   </CardContent>
                 </Card>

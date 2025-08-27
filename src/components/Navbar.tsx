@@ -1,14 +1,25 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [needsInteraction, setNeedsInteraction] = useState(true);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const languageDropdownRef = useRef<HTMLDivElement>(null);
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setIsLanguageDropdownOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +31,69 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+        const tryPlayVideo = async () => {
+            try {
+                await video.play();
+                console.log('Video playing successfully');
+                setNeedsInteraction(false);
+            } catch (error) {
+                console.log('Video autoplay prevented, needs user interaction');
+                setNeedsInteraction(true);
+            }
+        };
+
+        const handleCanPlay = () => {
+            tryPlayVideo();
+        };
+
+        const handleLoadedData = () => {
+            tryPlayVideo();
+        };
+
+        // Global click handler to enable video after any user interaction
+        const handleUserInteraction = () => {
+            if (needsInteraction) {
+                tryPlayVideo();
+            }
+        };
+
+        // Try to play immediately
+        tryPlayVideo();
+
+        video.addEventListener('loadeddata', handleLoadedData);
+        video.addEventListener('canplay', handleCanPlay);
+        
+        // Listen for any user interaction on the document
+        document.addEventListener('click', handleUserInteraction);
+        document.addEventListener('touchstart', handleUserInteraction);
+
+        // Cleanup
+        return () => {
+            video.removeEventListener('loadeddata', handleLoadedData);
+            video.removeEventListener('canplay', handleCanPlay);
+            document.removeEventListener('click', handleUserInteraction);
+            document.removeEventListener('touchstart', handleUserInteraction);
+        };
+    }
+}, [needsInteraction]);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -48,7 +122,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img src="/lovable-uploads/7d120ee6-3614-4b75-9c35-716d54490d67.png" alt="WRLDS Technologies Logo" className={cn("h-8 w-auto", isScrolled ? "" : "brightness-0 invert")} />
+              <img src="/lovable-uploads/logoFinal.png" alt="ISRI Shuangdi Springs Logo" className={cn("h-8 w-auto rounded px-2 py-1", isScrolled ? "" : "bg-black")} />
             </Link>
           </div>
           
@@ -59,7 +133,7 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      首页
+                      {t('nav.home')}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -67,97 +141,125 @@ const Navbar = () => {
                 <NavigationMenuItem>
                   <Link to="/about">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      关于我们
+                      {t('nav.about')}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className={cn(isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                    客户案例
+                    {t('nav.products')}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid gap-3 p-4 w-[400px]">
                       <li>
-                        <Link to="/projects/firecat" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">FireCat 第六感</div>
-                          <p className="text-sm text-gray-500">智能纺织品用于消防员安全</p>
+                        <Link to="/products/coupling-springs" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.couplingsprings.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.couplingsprings.description')}</p>
                         </Link>
                       </li>
                       <li>
-                        <Link to="/projects/sport-retail" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">运动表现</div>
-                          <p className="text-sm text-gray-500">运动员高级跟踪</p>
+                        <Link to="/products/bow-springs" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.bowsprings.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.bowsprings.description')}</p>
                         </Link>
                       </li>
                       <li>
-                        <Link to="/projects/workwear" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">工作服装气候控制</div>
-                          <p className="text-sm text-gray-500">极端环境下的温度调节</p>
+                        <Link to="/products/torsion-springs" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.torsionsprings.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.torsionsprings.description')}</p>
                         </Link>
                       </li>
                       <li>
-                        <Link to="/projects/hockey" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">冰球精英追踪器</div>
-                          <p className="text-sm text-gray-500">冰球精英追踪器</p>
+                        <Link to="/products/tension-springs" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.tensionsprings.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.tensionsprings.description')}</p>
                         </Link>
                       </li>
                       <li>
-                        <Link to="/projects/pet-tracker" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">宠物活动计数器</div>
-                          <p className="text-sm text-gray-500">智能项圈用于宠物活动监测</p>
+                        <Link to="/products/spring-system" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.springsystem.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.springsystem.description')}</p>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/products/valve-springs" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
+                          <div className="font-medium">{t('products.valvesprings.title')}</div>
+                          <p className="text-sm text-gray-500">{t('products.valvesprings.description')}</p>
                         </Link>
                       </li>
                     </ul>
                   </NavigationMenuContent>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className={cn(isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                    了解更多
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[400px]">
-                      <li>
-                        <Link to="/tech-details" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">技术详情</div>
-                          <p className="text-sm text-gray-500">我们的智能纺织平台如何工作</p>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/development-process" className="block p-3 space-y-1 rounded-md hover:bg-gray-100">
-                          <div className="font-medium">开发流程</div>
-                          <p className="text-sm text-gray-500">我们的方法来创建定制解决方案</p>
-                        </Link>
-                      </li>
-                      <li>
-                        
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <Link to="/blog">
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      新闻
-                    </NavigationMenuLink>
-                  </Link>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
                   <Link to="/careers">
                     <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      职业生涯
+                      {t('nav.careers')}
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
-                  <button onClick={() => scrollToSection('contact')} className={cn("px-4 py-2 rounded-md transition-colors", isScrolled ? "bg-gray-200 text-gray-700 hover:bg-gray-300" : "bg-gray-700 text-white hover:bg-gray-600")}>
-                    联系我们
+                  <button onClick={() => scrollToSection('contact')} className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
+                    {t('nav.contact')}
                   </button>
                 </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <Link to="/blog">
+                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
+                      {t('nav.blog')}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                
+                {/* Language Switcher - Custom Dropdown */}
+                <div className="relative" ref={languageDropdownRef}>
+                  <button
+                    onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                    className={cn(
+                      "flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                      isScrolled ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100" : "text-gray-100 hover:text-white hover:bg-gray-800"
+                    )}
+                  >
+                    <Globe className="w-4 h-4" />
+                    {t('nav.language')}
+                    <ChevronDown className={cn("w-4 h-4 transition-transform", isLanguageDropdownOpen ? "rotate-180" : "")} />
+                  </button>
+                  
+                  {isLanguageDropdownOpen && (
+                    <div className={cn(
+                      "absolute right-0 top-full mt-1 w-32 rounded-md shadow-lg z-50",
+                      isScrolled ? "bg-white border border-gray-200" : "bg-gray-800 border border-gray-700"
+                    )}>
+                      <div className="py-1">
+                        <button
+                          onClick={() => changeLanguage('zh')}
+                          className={cn(
+                            "w-full text-left px-3 py-2 text-sm transition-colors",
+                            i18n.language === 'zh' 
+                              ? (isScrolled ? "bg-gray-100 text-gray-900" : "bg-gray-700 text-white")
+                              : (isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-700")
+                          )}
+                        >
+                          {t('languages.chinese')}
+                        </button>
+                        <button
+                          onClick={() => changeLanguage('en')}
+                          className={cn(
+                            "w-full text-left px-3 py-2 text-sm transition-colors",
+                            i18n.language === 'en' 
+                              ? (isScrolled ? "bg-gray-100 text-gray-900" : "bg-gray-700 text-white")
+                              : (isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-700")
+                          )}
+                        >
+                          {t('languages.english')}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
@@ -178,49 +280,101 @@ const Navbar = () => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            首页
+            {t('nav.home')}
           </Link>
           
           <Link to="/about" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            关于我们
+            {t('nav.about')}
           </Link>
           
-          {/* Simplified Customer Cases - no dropdown */}
-          <Link to="/projects/firecat" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
-            setIsMenuOpen(false);
-            window.scrollTo(0, 0);
-          }}>
-            客户案例
-          </Link>
-          
-          {/* Simplified Learn More - no dropdown */}
-          <Link to="/tech-details" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
-            setIsMenuOpen(false);
-            window.scrollTo(0, 0);
-          }}>
-            了解更多
-          </Link>
-          
-          <Link to="/blog" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
-            setIsMenuOpen(false);
-            window.scrollTo(0, 0);
-          }}>
-            News
-          </Link>
+          {/* Products - simplified for mobile */}
+          <div className={cn("px-3 py-1.5 text-sm", isScrolled ? "text-gray-700" : "text-gray-200")}>
+            <div className="font-medium mb-1">{t('nav.products')}</div>
+            <div className="ml-2 space-y-1">
+              <Link to="/products/coupling-springs" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.couplingsprings.title')}
+              </Link>
+              <Link to="/products/bow-springs" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.bowsprings.title')}
+              </Link>
+              <Link to="/products/torsion-springs" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.torsionsprings.title')}
+              </Link>
+              <Link to="/products/tension-springs" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.tensionsprings.title')}
+              </Link>
+              <Link to="/products/spring-system" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.springsystem.title')}
+              </Link>
+              <Link to="/products/valve-springs" className={cn("block px-2 py-1 rounded text-xs", isScrolled ? "text-gray-600 hover:bg-gray-50" : "text-gray-300 hover:bg-gray-800")} onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}>
+                {t('products.valvesprings.title')}
+              </Link>
+            </div>
+          </div>
           
           <Link to="/careers" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
             setIsMenuOpen(false);
             window.scrollTo(0, 0);
           }}>
-            职业生涯
+            {t('nav.careers')}
           </Link>
           
           <button onClick={() => scrollToSection('contact')} className={cn("block w-full text-left px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 bg-gray-200 hover:bg-gray-300" : "text-white bg-gray-700 hover:bg-gray-600")}>
-            联系我们
+            {t('nav.contact')}
           </button>
+          
+          <Link to="/blog" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
+            setIsMenuOpen(false);
+            window.scrollTo(0, 0);
+          }}>
+            {t('nav.blog')}
+          </Link>
+          
+          {/* Mobile Language Switcher */}
+          <div className={cn("px-3 py-1.5 text-sm", isScrolled ? "text-gray-700" : "text-gray-200")}>
+            <div className="font-medium mb-1">{t('nav.language')}</div>
+            <div className="flex gap-2">
+              <button 
+                onClick={() => changeLanguage('zh')}
+                className={cn("px-2 py-1 rounded text-xs", 
+                  isScrolled ? "bg-gray-100 hover:bg-gray-200" : "bg-gray-800 hover:bg-gray-700",
+                  i18n.language === 'zh' ? (isScrolled ? 'bg-gray-200' : 'bg-gray-600') : ''
+                )}
+              >
+                {t('languages.chinese')}
+              </button>
+              <button 
+                onClick={() => changeLanguage('en')}
+                className={cn("px-2 py-1 rounded text-xs", 
+                  isScrolled ? "bg-gray-100 hover:bg-gray-200" : "bg-gray-800 hover:bg-gray-700",
+                  i18n.language === 'en' ? (isScrolled ? 'bg-gray-200' : 'bg-gray-600') : ''
+                )}
+              >
+                {t('languages.english')}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </motion.nav>

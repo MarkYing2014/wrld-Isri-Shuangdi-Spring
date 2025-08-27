@@ -21,16 +21,13 @@ const Index = () => {
   return (
     <PageLayout>
       <SEO 
-        title="WRLDS - 智能纺织技术" 
-        description="WRLDS Technologies: Pioneering smart engineering solutions with textile sensors for sports, safety, and performance monitoring."
         imageUrl="/lovable-uploads/526dc38a-25fa-40d4-b520-425b23ae0464.png"
-        keywords={['智能纺织品', '穿戴技术', '纺织传感器', '运动科技', '安全监控', '性能分析', '制造业']}
       />
       <Hero />
       <Features />
       <WhyWrlds />
       <Projects />
-      <BlogPreview />
+      {/* <BlogPreview /> */}
     </PageLayout>
   );
 };

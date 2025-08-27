@@ -1,0 +1,442 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "careers": "Careers",
+    "contact": "Contact Us",
+    "blog": "Blog",
+    "language": "Language"
+  },
+  "contact": {
+    "header": {
+      "badge": "Contact Us",
+      "title": "Get in touch today",
+      "description": "Do you have questions about our spring solutions? Contact our team to discuss how we can help realize your ideas."
+    },
+    "linkedin": "LinkedIn Profile",
+    "people": {
+      "felix": {
+        "name": "Mark Ying",
+        "role": "Sales Manager"
+      },
+      "love": {
+        "name": "Love Anderberg",
+        "role": "Operations Manager"
+      }
+    }
+  },
+  "products": {
+    "couplingsprings": {
+      "title": "Coupling Springs",
+      "description": "High-precision coupling spring solutions",
+      "heroDescription": "Engineered for maximum torque transmission and misalignment compensation in demanding powertrain applications.",
+      "features": [
+        {
+          "title": "High Torque Capacity",
+          "description": "Designed to handle high levels of torque, ensuring reliable performance under heavy loads."
+        },
+        {
+          "title": "Vibration Damping",
+          "description": "Effectively absorbs and dampens torsional vibrations, protecting drivetrain components."
+        },
+        {
+          "title": "Misalignment Compensation",
+          "description": "Accommodates parallel, angular, and axial misalignment, reducing wear on connected shafts."
+        }
+      ],
+      "stats": [
+        {
+          "value": "50%",
+          "label": "Vibration Reduction"
+        },
+        {
+          "value": "10M+",
+          "label": "Cycles Durability"
+        },
+        {
+          "value": "3°",
+          "label": "Angular Misalignment"
+        }
+      ]
+    },
+    "bowsprings": {
+      "title": "Bow Springs",
+      "description": "Professional bow spring manufacturing",
+      "heroDescription": "Our bow springs provide consistent radial force and flexibility, making them ideal for clutch and transmission systems.",
+      "features": [
+        {
+          "title": "Consistent Radial Force",
+          "description": "Delivers uniform pressure distribution for smooth engagement and disengagement."
+        },
+        {
+          "title": "High Fatigue Life",
+          "description": "Manufactured from premium materials to withstand millions of cycles without failure."
+        },
+        {
+          "title": "Compact Design",
+          "description": "Offers a high force-to-size ratio, perfect for applications with limited space."
+        }
+      ],
+      "stats": [
+        {
+          "value": "±5%",
+          "label": "Force Consistency"
+        },
+        {
+          "value": "20M+",
+          "label": "Cycle Life"
+        },
+        {
+          "value": "250°C",
+          "label": "Max Operating Temp"
+        }
+      ]
+    },
+    "torsionsprings": {
+      "title": "Torsion Springs",
+      "description": "Custom torsion spring systems",
+      "heroDescription": "Custom-designed torsion springs that apply torque or store rotational energy, tailored to your specific application needs.",
+      "features": [
+        {
+          "title": "Custom Torque Profiles",
+          "description": "Engineered to provide precise torque at specific angular positions."
+        },
+        {
+          "title": "Wide Material Selection",
+          "description": "Available in a variety of materials, including stainless steel and exotic alloys, for any environment."
+        },
+        {
+          "title": "Diverse End Styles",
+          "description": "Multiple end-of-leg configurations available to suit various mounting requirements."
+        }
+      ],
+      "stats": [
+        {
+          "value": "360°+",
+          "label": "Rotational Capability"
+        },
+        {
+          "value": "0.1-50 Nm",
+          "label": "Torque Range"
+        },
+        {
+          "value": "100%",
+          "label": "Customizable Design"
+        }
+      ]
+    },
+    "tensionsprings": {
+      "title": "Tension Springs",
+      "description": "High-strength tension springs",
+      "heroDescription": "High-performance tension springs designed to operate with a tensile load, providing reliable return force.",
+      "features": [
+        {
+          "title": "High Initial Tension",
+          "description": "Manufactured to achieve specific initial tensions for a secure and immediate force."
+        },
+        {
+          "title": "Variety of Hook Ends",
+          "description": "A wide range of hook and loop configurations to ensure easy integration into your assembly."
+        },
+        {
+          "title": "Exceptional Durability",
+          "description": "Constructed from high-tensile materials to ensure long service life under constant stress."
+        }
+      ],
+      "stats": [
+        {
+          "value": "5000N",
+          "label": "Max Load Capacity"
+        },
+        {
+          "value": "15M+",
+          "label": "Fatigue Life Cycles"
+        },
+        {
+          "value": "99.9%",
+          "label": "Material Purity"
+        }
+      ]
+    },
+    "springsystem": {
+      "title": "Spring System",
+      "description": "Complete spring system solutions",
+      "heroDescription": "Integrated spring systems and assemblies, combining multiple components to perform complex mechanical functions.",
+      "features": [
+        {
+          "title": "Fully Integrated Assemblies",
+          "description": "We design and manufacture complete sub-assemblies for seamless integration into your products."
+        },
+        {
+          "title": "Multi-Functional Design",
+          "description": "Our systems combine various spring types and components to achieve complex motion and force profiles."
+        },
+        {
+          "title": "Optimized Performance",
+          "description": "Each system is simulated and tested to ensure optimal performance, reliability, and cost-effectiveness."
+        }
+      ],
+      "stats": [
+        {
+          "value": "-40%",
+          "label": "Assembly Time Reduction"
+        },
+        {
+          "value": "10+",
+          "label": "Components Integrated"
+        },
+        {
+          "value": "100%",
+          "label": "System-Level Tested"
+        }
+      ]
+    },
+    "valvesprings": {
+      "title": "Valve Springs",
+      "description": "Automotive valve spring experts",
+      "heroDescription": "High-performance valve springs engineered to withstand the extreme conditions of modern high-revving engines.",
+      "features": [
+        {
+          "title": "High-Frequency Durability",
+          "description": "Designed to prevent valve float and maintain stability at high engine RPMs."
+        },
+        {
+          "title": "Advanced Materials",
+          "description": "Utilizing super-clean chrome-silicon and other high-strength alloys for maximum life and performance."
+        },
+        {
+          "title": "Stress-Relieved & Shot-Peened",
+          "description": "All springs undergo advanced manufacturing processes to enhance fatigue strength and durability."
+        }
+      ],
+      "stats": [
+        {
+          "value": "10,000+",
+          "label": "RPM Capability"
+        },
+        {
+          "value": "100M+",
+          "label": "Cycle Endurance"
+        },
+        {
+          "value": "<2%",
+          "label": "Load Loss at Temp"
+        }
+      ]
+    },
+    "featuresTitle": "Key Features",
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "description": "Our team of experts is ready to help you find the perfect spring solution for your needs. Contact us today to discuss your requirements.",
+      "button": "Get in Touch"
+    }
+  },
+  "languages": {
+    "chinese": "中文",
+    "english": "English"
+  },
+  "seo": {
+    "defaultTitle": "ISRI-Shuangdi Spring",
+    "defaultDescription": "ISRI-Shuangdi Spring: Providing high-quality solutions compliant with international standards like IATF16949.",
+    "companyName": "ISRI-Shuangdi Spring",
+    "keywords": ["precision springs", "precision components", "automotive springs", "precision manufacturing", "quality assurance", "testing", "global supply chain management"]
+  },
+  "hero": {
+    "title": "Shuangdi Precision · Excellence Forged",
+    "subtitle": "Every precision spring provides core power for the global automotive industry",
+    "exploreProjects": "Explore Projects",
+    "contactUs": "Contact Us",
+    "feature1": {
+      "title": "Global & Local Integration",
+      "description": "Combining ISRI's century-old heritage with Shuangdi's advanced manufacturing capabilities."
+    },
+    "feature2": {
+      "title": "Precision Products",
+      "description": "Specializing in springs and components for clutch, powertrain, steering, braking, and suspension systems."
+    },
+    "feature3": {
+      "title": "Certified Quality",
+      "description": "Compliant with international standards like IATF16949, ensuring product quality and performance."
+    }
+  },
+  "about": {
+    "title": "About ISRI-Shuangdi Spring",
+    "subtitle": "Precision Engineering Excellence Since 1919",
+    "description": "Zhejiang Isringhausen Shuangdi Spring Co., Ltd. is a joint venture between Germany's ISRINGHAUSEN Group and Zhejiang Shuangdi Spring Co., Ltd., combining German precision engineering with Chinese manufacturing expertise. We specialize in automotive springs and precision components, delivering high-quality solutions that meet international standards including IATF16949 for leading OEMs worldwide.",
+    "backToHome": "Back to Home",
+    "mission": {
+      "title": "Our Mission",
+      "description": "Driving innovation with precision springs and components for the world's leading automotive OEMs"
+    },
+    "capabilities": {
+      "title": "Our Capabilities",
+      "items": [
+        "Automobile springs of various specifications",
+        "Precision stamped components",
+        "Custom spring solutions",
+        "Precision manufacturing",
+        "Quality assurance & testing",
+        "Global supply chain management"
+      ]
+    },
+    "story": {
+      "title": "Our Story",
+      "heritage": {
+        "title": "Heritage",
+        "description": "Over a century of German precision engineering, setting global standards in automotive spring technology."
+      },
+      "partnership": {
+        "title": "Partnership",
+        "description": "Joint venture combining German engineering excellence with Chinese manufacturing expertise."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Delivering cutting-edge spring solutions for automotive leaders worldwide with certified quality."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Our team unites international experts and local specialists, combining engineering excellence with deep industry experience.",
+      "members": {
+        "felix": {
+          "name": "Felix von Heland",
+          "role": "CEO and Founder",
+          "bio": "Leading ISRI-Shuangdi Spring with expertise in automotive suspension systems and precision spring manufacturing."
+        },
+        "niek": {
+          "name": "Niek Bijman",
+          "role": "Engineering Director",
+          "bio": "Specializing in advanced spring design and metallurgy, ensuring optimal performance in automotive applications."
+        },
+        "chengjie": {
+          "name": "Chengjie Li",
+          "role": "Manufacturing Lead",
+          "bio": "Expert in precision spring production processes and quality control systems for automotive components."
+        },
+        "love": {
+          "name": "Love",
+          "role": "COO",
+          "bio": "Overseeing operations and supply chain management for high-volume automotive spring production."
+        }
+      },
+      "joinTeam": "Join Our Team"
+    }
+  },
+  "footer": {
+    "logoAlt": "Shuangdi Precision Spring Logo",
+    "description1": "Shuangdi Precision Spring, specializing in springs and components for clutch, powertrain, steering, braking, and suspension systems.",
+    "description2": "Every precision spring provides core power for the global automotive industry",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "careers": "Careers",
+    "privacyPolicy": "Privacy Policy",
+    "contactUs": "Contact Us",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "copyright": "All rights reserved",
+    "toastError": "Error!",
+    "toastSuccess": "Success!",
+    "emailRequired": "Please enter an email address.",
+    "subscribeSuccess": "Thank you for subscribing to our newsletter.",
+    "subscribeError": "There was a problem subscribing. Please try again later."
+  },
+  "features": {
+    "sectionTitle": "Application Areas",
+    "sectionDescription": "Our spring products are widely used in key industries such as automotive, aerospace, energy, and robotics, providing reliable power and innovative solutions for the world.",
+    "automotiveTitle": "Automotive Industry",
+    "automotiveDescription": "Precision springs are widely used in clutches, powertrains, steering, braking, and suspension systems to ensure vehicle safety and performance.",
+    "aerospaceTitle": "Aerospace Industry",
+    "aerospaceDescription": "High-strength springs are used in aircraft, satellites, and space equipment to ensure reliability and stability in extreme environments.",
+    "energyTitle": "Energy Industry",
+    "energyDescription": "Springs are used in wind power, nuclear power, petrochemical, and other energy equipment to provide durable elastic solutions for systems.",
+    "roboticsTitle": "Robotics Industry",
+    "roboticsDescription": "In the field of automation and robotics, precision springs are used for motion control and shock absorption to improve flexibility and durability.",
+    "customSolutionButton": "Need a custom solution?",
+    "learnTechnologyButton": "Learn about our technology",
+    "customProcessTitle": "Customization Process",
+    "howItWorksTitle": "How Our Technology Works",
+    "howItWorksDescription": "We use proprietary and off-the-shelf hardware and software to build completely unique solutions at high speed and with low risk.",
+    "step1Title": "Requirement Definition",
+    "step1Description": "Align application scenarios with technical indicators: dimensions/load/life/environment and standards; receive drawings or 3D/CAD to clarify boundary conditions and quality targets.",
+    "step2Title": "Engineering Design & Rapid Prototyping",
+    "step2Description": "Material and wire diameter selection, spring geometry and tolerance design; simulation verification (stress/fatigue/thermal/vibration), rapid sample processing and laboratory testing (force-stroke curve, fatigue life, consistency).",
+    "step3Title": "Validation, Mass Production & Continuous Optimization",
+    "step3Description": "Validation according to IATF16949/PPAP, establishing process windows and SPC control; mass production and traceability; continuous improvement based on field data, supporting version iteration and cost reduction.",
+    "adaptiveProjectTitle": "Adaptive Projects",
+    "iterativeDevelopment": "Iterative development with customers to meet their needs",
+    "planningPhase": "Planning",
+    "developmentPhase": "Development",
+    "testingPhase": "Testing",
+    "reviewPhase": "Review",
+    "feedbackIntegration": "Customer feedback integrated at every stage",
+    "continuousImprovement": "Continuous Improvement",
+    "marketLaunchTitle": "Go to Market",
+    "marketLaunchDescription": "Ready to scale, produce, and launch",
+    "learnMoreButton": "Learn more about our technology",
+    "contactExpertButton": "Contact our experts",
+    "sensorApplications": "Textile Sensor Applications",
+    "realWorldScenarios": "Real-World Scenarios",
+    "scenariosDescription": "Explore how our textile sensor technology is applied in various professional fields, from emergency response to construction and sports.",
+    "scrollForMore": "Scroll horizontally for more examples →",
+    "sensorPerformance": "These examples show how our textile sensors enhance safety and performance",
+    "hoverCardStep1": "Our proprietary technology provides the core foundation for every solution.",
+    "hoverCardStep2": "We carefully select the best off-the-shelf components to complement our proprietary technology.",
+    "hoverCardStep3": "Our manufacturing partners ensure quality in large-scale production."
+  },
+  "whyWrlds": {
+    "title": "Why Choose ISRI-Shuangdi?",
+    "subtitle": "Combining a century of German precision spring manufacturing experience from ISRINGHAUSEN with Zhejiang Shuangdi's local manufacturing strength, we offer both advanced international technology and localized service capabilities.",
+    "heritage": "A century of German ISRINGHAUSEN heritage, with world-leading spring technology and manufacturing experience.",
+    "certifications": "4 major international certifications, ensuring product quality and performance.",
+    "clients": "30+ industry clients, ensuring product quality and performance.",
+    "whatWeDoTitle": "What ISRI-Shuangdi Does For You",
+    "whatWeDoSubtitle": "We transform your ideas into market-ready solutions with tangible business benefits.",
+    "newRevenueTitle": "New Revenue Products",
+    "newRevenueDescription": "Develop high-value precision spring products to meet emerging needs in automotive, aerospace, energy, and robotics industries.",
+    "customerAttractionTitle": "Innovate to Attract Customers",
+    "customerAttractionDescription": "Earn the trust of global clients with leading spring design and manufacturing technology.",
+    "comfortZoneTitle": "Development in Your Comfort Zone",
+    "comfortZoneDescription": "We tackle the technical challenges of extreme conditions, ensuring your products remain reliable.",
+    "brandBuildingTitle": "Brand-Building Leaps",
+    "brandBuildingDescription": "Propel your brand into the future with world-class spring technology and quality standards.",
+    "learnMoreButton": "Learn about our structured development process"
+  },
+  "projects": {
+    "tag": "Customer Cases",
+    "title": "The Trusted Choice of Global Clients",
+    "subtitle": "From automotive giants to aerospace, our precision spring technology has earned the trust of clients worldwide.",
+    "swipeToNavigate": "Swipe to navigate",
+    "zf": {
+      "title": "Automotive Components",
+      "brand": "ZF",
+      "description": "Global automotive parts giant",
+      "testimonial": "\"The spring products provided by ISRI-Shuangdi consistently exceed our requirements for durability and precision. Their commitment to quality and innovation makes them a trusted partner in our global supply chain.\""
+    },
+    "valeo": {
+      "title": "Powertrain Systems",
+      "brand": "Valeo",
+      "description": "Tier 1 powertrain supplier",
+      "testimonial": "\"Their clutch and powertrain springs feature exceptional precision engineering. Lean manufacturing and rigorous testing give us confidence in every batch of components.\""
+    },
+    "tesla": {
+      "title": "Electric Vehicle Suspension",
+      "brand": "Tesla",
+      "description": "Electric vehicle manufacturer",
+      "testimonial": "\"Innovation drives the EV market, and their customized suspension springs have helped us deliver a safe and comfortable driving experience to customers worldwide.\""
+    },
+    "aerospace": {
+      "title": "Aerospace Systems",
+      "brand": "Aerospace Equipment Supplier",
+      "description": "Advanced materials and rigorous testing ensure systems meet the highest international standards",
+      "testimonial": "\"Reliability in extreme conditions is paramount. Their advanced materials and rigorous testing ensure our aerospace systems meet the highest international standards.\""
+    },
+    "robotics": {
+      "title": "Robotics & Automation",
+      "brand": "Robotics & Automation Company",
+      "description": "Precision springs are core components of our robotic systems, providing smooth and reliable motion control",
+      "testimonial": "\"Their precision springs are core components of our robotic systems. Their consistency and sensitivity provide smooth and reliable motion control for critical automation applications.\""
+    }
+  }
+}
