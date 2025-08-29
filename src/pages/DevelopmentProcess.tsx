@@ -1,6 +1,7 @@
 import { ArrowLeft, CheckCircle, Clock, FileSearch, Settings, Cpu, Code, Truck, BarChart, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import PageLayout from '@/components/PageLayout';
 const DevelopmentProcess = () => {
@@ -13,36 +14,21 @@ const DevelopmentProcess = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Process component logic
-  const processes = [{
-    id: 1,
-    title: "Textile Sensor Design",
-    description: "We begin by designing custom textile sensors specifically for your industry and use case, selecting appropriate conductive materials and sensor types.",
-    steps: ["Industry-specific requirement analysis", "Sensor type and material selection", "Prototype sensor development", "Initial testing and calibration"]
-  }, {
-    id: 2,
-    title: "Garment Integration",
-    description: "Our engineering team seamlessly integrates sensors into clothing and footwear while maintaining comfort, durability, and washability.",
-    steps: ["Ergonomic placement optimization", "Non-intrusive integration techniques", "Durability and washability testing", "Comfort and user experience validation"]
-  }, {
-    id: 3,
-    title: "AI & Data Analytics",
-    description: "We develop specialized algorithms that transform textile sensor data into actionable insights unique to your industry requirements.",
-    steps: ["Industry-specific algorithm development", "ML model training with domain data", "Real-time analytics implementation", "Insight delivery optimization"]
-  }, {
-    id: 4,
-    title: "Production & Certification",
-    description: "We handle manufacturing, quality control, and ensure all textile sensor products meet relevant industry standards and certifications.",
-    steps: ["Textile manufacturing partner selection", "Quality assurance processes", "Industry-specific certification procurement", "Initial production supervision"]
-  }, {
-    id: 5,
-    title: "Deployment & Support",
-    description: "We provide comprehensive training, implementation assistance, and ongoing support to ensure successful adoption and continuous improvement.",
-    steps: ["User training and onboarding", "Data interpretation guidance", "Performance monitoring", "Continuous improvement iterations"]
-  }];
+  const { t } = useTranslation();
+  
+  // Get process steps from translations
+  type ProcessStep = {
+    id: number;
+    title: string;
+    description: string;
+    steps: string[];
+  };
+  
+  const processes = t('process.steps', { returnObjects: true }) as ProcessStep[];
+  
   useEffect(() => {
     processSectionsRef.current = processes.map((_, i) => processSectionsRef.current[i] || null);
-  }, []);
+  }, [processes]);
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -58,32 +44,51 @@ const DevelopmentProcess = () => {
     }
     return () => observer.disconnect();
   }, []);
+  // Update active process based on scroll position
   useEffect(() => {
     const handleScroll = () => {
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
       let closestSection = null;
       let closestDistance = Infinity;
+      
       processSectionsRef.current.forEach((section, index) => {
         if (!section) return;
         const rect = section.getBoundingClientRect();
-        const sectionCenter = rect.top + rect.height / 2;
+        const sectionCenter = rect.top + (rect.height / 2);
         const distance = Math.abs(sectionCenter - viewportCenter);
+        
         if (distance < closestDistance) {
           closestDistance = distance;
-          closestSection = index;
+          closestSection = index + 1; // Process IDs start from 1
         }
       });
-      if (closestSection !== null) {
-        setActiveProcess(closestSection + 1);
+      
+      if (closestSection !== null && closestSection !== activeProcess) {
+        setActiveProcess(closestSection);
       }
     };
-    window.addEventListener('scroll', handleScroll, {
-      passive: true
-    });
-    setTimeout(handleScroll, 100);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    
+    // Throttle scroll events for better performance
+    let scrollTimeout: NodeJS.Timeout;
+    const throttledScroll = () => {
+      if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+          handleScroll();
+          scrollTimeout = null as any;
+        }, 100);
+      }
+    };
+    
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    // Initial check
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+  }, [activeProcess]);
   const developmentSteps = [{
     icon: <FileSearch className="h-6 w-6" />,
     title: "1. Discovery & Requirements",
@@ -113,98 +118,121 @@ const DevelopmentProcess = () => {
     title: "7. Continuous Improvement",
     description: "Post-launch analytics and feedback loops drive ongoing improvements, updates, and potential new features."
   }];
-  return <PageLayout>
+  return (
+    <PageLayout>
       <section className="pt-24 pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <Link to="/" className="flex items-center text-gray-500 hover:text-gray-700 mb-8">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Link>
-            
-            <h1 className="text-4xl font-bold mb-8">Our Structured Development Process</h1>
-            
-            <div className="prose prose-lg max-w-none">
-              <p className="text-xl text-gray-600 mb-12">
-                We've refined our development methodology to minimize risk and maximize innovation, 
-                ensuring your textile sensor project moves efficiently from concept to reality.
-              </p>
-              
-              {/* From Textile to Intelligence Process Section */}
-              <div className="relative mt-12" ref={processRef} style={{
-              opacity: 0
-            }}>
-                <div className="hidden md:block absolute top-0 left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2"></div>
-                
-                <div className="space-y-10 relative">
-                  {processes.map((process, index) => <div key={process.id} ref={el => processSectionsRef.current[index] = el} className={cn("relative flex flex-col md:flex-row md:items-center gap-6", index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse text-right")}>
-                      <div className="md:w-1/2">
-                        <div className={cn("md:absolute top-0 left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-all duration-300", activeProcess === process.id ? "bg-gray-700 text-white scale-110" : "bg-white text-gray-700 border border-gray-300")} onClick={() => setActiveProcess(process.id)}>
-                          <span className="font-bold">{process.id}</span>
-                        </div>
-                        
-                        <h3 className="text-xl font-bold mb-2 mt-3 md:mt-0">{process.title}</h3>
-                        <p className="text-gray-600 mb-3 text-sm">{process.description}</p>
-                        
-                        <button onClick={() => setActiveProcess(process.id)} className={cn("text-sm font-medium transition-colors", activeProcess === process.id ? "text-gray-700" : "text-gray-500 hover:text-gray-700")}>
-                          {activeProcess === process.id ? "Currently Viewing" : "View Details"}
-                        </button>
-                      </div>
-                      
-                      <div className={cn("md:w-1/2 bg-white rounded-xl p-5 shadow-sm border border-gray-100 transition-all duration-300", activeProcess === process.id ? "opacity-100 translate-y-0 shadow-md border-gray-200" : "opacity-50 md:opacity-30 hover:opacity-70 cursor-pointer")} onClick={() => setActiveProcess(process.id)}>
-                        <h4 className="font-semibold mb-3 text-gray-700">Key Activities:</h4>
-                        <ul className="space-y-2">
-                          {process.steps.map((step, stepIndex) => <li key={stepIndex} className="flex items-start">
-                              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center mt-0.5 mr-2">
-                                <Check className="w-3 h-3 text-gray-700" />
-                              </span>
-                              <span className="text-gray-700 text-sm text-left">{step}</span>
-                            </li>)}
-                        </ul>
-                      </div>
-                    </div>)}
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-8 rounded-lg my-12 border border-gray-100">
-                <h3 className="text-xl font-semibold mb-4">Our Development Principles</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                    <span>Rapid iteration cycles for continuous improvement</span>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
+              {t('process.title')}
+            </h2>
+            <p className="text-xl text-gray-600 mb-12">
+              {t('process.description')}
+            </p>
+
+            <div className="prose prose-lg max-w-none text-left">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+                {t('process.principles.title')}
+              </h3>
+              <ul className="space-y-3 mb-12">
+                {(t('process.principles.items', { returnObjects: true }) as string[]).map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                    <span>{item}</span>
                   </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                    <span>Transparent communication throughout the development process</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                    <span>Modular architecture allowing for flexible and scalable solutions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                    <span>Risk mitigation strategies built into every phase</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 mr-2" />
-                    <span>Focus on user experience and practical functionality</span>
-                  </li>
-                </ul>
-              </div>
-              
-              
+                ))}
+              </ul>
             </div>
-            
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <Link to="/tech-details" className="inline-flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group">
-                Explore Our Technology
+          </div>
+
+          <div className="relative">
+            <div className="hidden md:block absolute top-0 left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2"></div>
+
+            <div className="space-y-10 relative">
+              {processes.map((process, index) => (
+                <div 
+                  key={process.id} 
+                  ref={el => processSectionsRef.current[index] = el} 
+                  className={cn(
+                    "relative flex flex-col md:flex-row md:items-center gap-6",
+                    index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  )}
+                >
+                  <div className="md:w-1/2">
+                    <div 
+                      className={cn(
+                        "md:absolute top-0 left-1/2 md:-translate-x-1/2 w-12 h-12 rounded-full flex items-center justify-center z-10 transition-all duration-300 cursor-pointer shadow-md text-lg font-bold",
+                        activeProcess === process.id 
+                          ? "bg-orange-500 text-white border-orange-500 scale-110" 
+                          : "bg-white text-orange-600 border-2 border-orange-500"
+                      )} 
+                      onClick={() => setActiveProcess(process.id)}
+                      aria-current={activeProcess === process.id ? 'step' : undefined}
+                    >
+                      {process.id}
+                    </div>
+
+                    <div className={index % 2 === 0 ? "md:pr-16" : "md:pl-16"}>
+                      <h3 className="text-xl font-bold mb-2 mt-3 md:mt-0">{process.title}</h3>
+                      <p className="text-gray-600 mb-3 text-sm">{process.description}</p>
+
+                      <button 
+                        onClick={() => setActiveProcess(process.id)} 
+                        className={cn(
+                          "text-sm font-medium transition-colors",
+                          activeProcess === process.id 
+                            ? "text-gray-700" 
+                            : "text-gray-500 hover:text-gray-700"
+                        )}
+                      >
+                        {activeProcess === process.id 
+                          ? t('currentlyViewing') 
+                          : t('viewDetails')}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div 
+                    className={cn(
+                      "md:w-1/2 bg-white rounded-xl p-5 shadow-sm border-2 transition-all duration-300",
+                      activeProcess === process.id 
+                        ? "opacity-100 translate-y-0 shadow-lg border-orange-300" 
+                        : "opacity-50 md:opacity-40 hover:opacity-70 cursor-pointer border-transparent"
+                    )} 
+                    onClick={() => setActiveProcess(process.id)}
+                  >
+                    <h4 className="font-semibold mb-3 text-gray-700">
+                      {t('keyActivities')}
+                    </h4>
+                    <ul className="space-y-2">
+                      {process.steps.map((step: string, stepIndex: number) => (
+                        <li key={stepIndex} className="flex items-start">
+                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center mt-0.5 mr-2">
+                            <Check className="w-3 h-3 text-gray-700" />
+                          </span>
+                          <span className="text-gray-700 text-sm">{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+              <Link 
+                to="/tech-details" 
+                className="inline-flex items-center px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group"
+              >
+                {t('exploreTechnology')}
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
         </div>
       </section>
-    </PageLayout>;
+    </PageLayout>
+  );
 };
 export default DevelopmentProcess;
 

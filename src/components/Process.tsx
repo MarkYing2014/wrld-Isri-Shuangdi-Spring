@@ -2,38 +2,47 @@
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Check } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const processes = [{
   id: 1,
-  title: "Textile Sensor Design",
-  description: "We begin by designing custom textile sensors specifically for your industry and use case, selecting appropriate conductive materials and sensor types.",
-  steps: ["Industry-specific requirement analysis", "Sensor type and material selection", "Prototype sensor development", "Initial testing and calibration"]
+  title: "精密弹簧设计",
+  description: "我们从为您的行业和用例设计定制的精密弹簧开始，选择合适的材料、线径和结构。",
+  steps: ["行业特定需求分析", "弹簧类型和材料选择", "原型弹簧开发", "初始测试和校准"]
 }, {
   id: 2,
-  title: "Garment Integration",
-  description: "Our engineering team seamlessly integrates sensors into clothing and footwear while maintaining comfort, durability, and washability.",
-  steps: ["Ergonomic placement optimization", "Non-intrusive integration techniques", "Durability and washability testing", "Comfort and user experience validation"]
+  title: "弹簧集成",
+  description: "我们的工程团队将弹簧无缝集成到您的产品中，同时保持其功能性、耐久性和可靠性。",
+  steps: ["功能性优化", "非侵入式集成技术", "耐久性与疲劳测试", "功能和性能验证"]
 }, {
   id: 3,
-  title: "AI & Data Analytics",
-  description: "We develop specialized algorithms that transform textile sensor data into actionable insights unique to your industry requirements.",
-  steps: ["Industry-specific algorithm development", "ML model training with domain data", "Real-time analytics implementation", "Insight delivery optimization"]
+  title: "AI与数据分析",
+  description: "我们开发专门的算法，将弹簧性能数据转化为可操作的洞察，以满足您的行业需求。",
+  steps: ["行业特定算法开发", "机器学习模型训练与领域数据", "实时性能分析", "实现洞察交付优化"]
 }, {
   id: 4,
-  title: "Production & Certification",
-  description: "We handle manufacturing, quality control, and ensure all textile sensor products meet relevant industry standards and certifications.",
-  steps: ["Textile manufacturing partner selection", "Quality assurance processes", "Industry-specific certification procurement", "Initial production supervision"]
+  title: "生产与认证",
+  description: "我们负责制造、质量控制，并确保所有精密弹簧产品符合相关的行业标准和认证。",
+  steps: ["制造合作伙伴选择", "质量保证流程", "行业特定认证获取", "初始生产监督"]
 }, {
   id: 5,
-  title: "Deployment & Support",
-  description: "We provide comprehensive training, implementation assistance, and ongoing support to ensure successful adoption and continuous improvement.",
-  steps: ["User training and onboarding", "Data interpretation guidance", "Performance monitoring", "Continuous improvement iterations"]
+  title: "部署与支持",
+  description: "我们提供全面的培训、实施协助和持续支持，以确保成功应用和持续改进。",
+  steps: ["用户培训和入门", "数据解读指导", "性能监控", "持续改进迭代"]
 }];
 
 const Process = () => {
+  const { t } = useTranslation();
   const [activeProcess, setActiveProcess] = useState(1);
   const processRef = useRef<HTMLDivElement>(null);
   const processSectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  
+  const processes = t('process.steps', { returnObjects: true }) as Array<{
+    id: number;
+    title: string;
+    description: string;
+    steps: string[];
+  }>;
   
   useEffect(() => {
     processSectionsRef.current = processes.map((_, i) => processSectionsRef.current[i] || null);
@@ -96,9 +105,9 @@ const Process = () => {
     <section id="process" className="bg-white py-16">
       <div className="container mx-auto px-4" ref={processRef}>
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Our Development Process</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We follow a structured approach to developing textile sensor solutions that ensures quality, reliability, and performance.
+          <h2 className="text-3xl font-bold text-center mb-4">{t('process.title')}</h2>
+          <p className="text-xl text-gray-600 text-center max-w-3xl mx-auto mb-12">
+            {t('process.description')}
           </p>
         </div>
         

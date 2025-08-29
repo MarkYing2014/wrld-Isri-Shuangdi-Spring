@@ -414,7 +414,7 @@ const Features = () => {
                 <p className="text-gray-600 mb-4">{t('features.iterativeDevelopment')}</p>
                 
                 <div className="relative mb-2">
-                  <Progress value={progressValue} className="h-3 bg-gray-200" />
+                  <Progress value={progressValue} className="h-3 bg-gray-200 [&>div]:bg-orange-400" />
                 </div>
                 
                 <div className={cn("grid gap-1 mt-4", isMobile ? "grid-cols-2 gap-y-2" : "grid-cols-4")}>

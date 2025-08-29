@@ -206,14 +206,6 @@ const Navbar = () => {
                   </button>
                 </NavigationMenuItem>
                 
-                <NavigationMenuItem>
-                  <Link to="/blog">
-                    <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), isScrolled ? "text-gray-700 hover:text-gray-900" : "text-gray-100 hover:text-white bg-transparent hover:bg-gray-800")}>
-                      {t('nav.blog')}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                
                 {/* Language Switcher - Custom Dropdown */}
                 <div className="relative" ref={languageDropdownRef}>
                   <button
@@ -344,15 +336,8 @@ const Navbar = () => {
             {t('nav.contact')}
           </button>
           
-          <Link to="/blog" className={cn("block px-3 py-1.5 rounded-md text-sm", isScrolled ? "text-gray-700 hover:bg-gray-50" : "text-gray-200 hover:bg-gray-900")} onClick={() => {
-            setIsMenuOpen(false);
-            window.scrollTo(0, 0);
-          }}>
-            {t('nav.blog')}
-          </Link>
-          
-          {/* Mobile Language Switcher */}
-          <div className={cn("px-3 py-1.5 text-sm", isScrolled ? "text-gray-700" : "text-gray-200")}>
+          <div className="border-t border-gray-200 my-1"></div>
+            <div className={cn("px-3 py-1.5 text-sm", isScrolled ? "text-gray-700" : "text-gray-200")}>
             <div className="font-medium mb-1">{t('nav.language')}</div>
             <div className="flex gap-2">
               <button 

@@ -232,9 +232,172 @@
       "button": "Get in Touch"
     }
   },
+  "process": {
+    "title": "Our Structured Development Process",
+    "description": "We've refined our engineering process to minimize risk and maximize innovation, ensuring your spring project moves efficiently from concept to production.",
+    "principles": {
+      "title": "Our Development Principles",
+      "items": [
+        "Rapid Iteration & Continuous Improvement",
+        "Transparent Collaboration",
+        "Modular & Scalable Engineering",
+        "Risk Mitigation & Quality Assurance",
+        "Focus on User Experience & Practical Functionality"
+      ]
+    },
+    "keyActivities": "Key Activities:",
+    "currentlyViewing": "Currently Viewing",
+    "viewDetails": "View Details",
+    "exploreTechnology": "Explore Our Technology",
+    "steps": [
+      {
+        "title": "Precision Spring Design",
+        "description": "We start by designing custom precision springs for your industry and use case, selecting the right materials, wire diameters, and structures.",
+        "steps": [
+          "Industry-specific requirement analysis",
+          "Spring type and material selection",
+          "Prototype spring development",
+          "Initial testing and calibration"
+        ]
+      },
+      {
+        "title": "Spring Integration",
+        "description": "Our engineering team seamlessly integrates springs into your products while maintaining their functionality, durability, and reliability.",
+        "steps": [
+          "Functional optimization",
+          "Non-intrusive integration techniques",
+          "Durability and fatigue testing",
+          "Function and performance validation"
+        ]
+      },
+      {
+        "title": "AI & Data Analytics",
+        "description": "We develop specialized algorithms that transform spring performance data into actionable insights to meet your industry needs.",
+        "steps": [
+          "Industry-specific algorithm development",
+          "Machine learning model training with domain data",
+          "Real-time performance analysis",
+          "Implementation insight delivery optimization"
+        ]
+      },
+      {
+        "title": "Production & Certification",
+        "description": "We handle manufacturing, quality control, and ensure all precision spring products meet relevant industry standards and certifications.",
+        "steps": [
+          "Manufacturing partner selection",
+          "Quality assurance processes",
+          "Industry-specific certification acquisition",
+          "Initial production supervision"
+        ]
+      },
+      {
+        "title": "Deployment & Support",
+        "description": "We provide comprehensive training, implementation assistance, and ongoing support to ensure successful application and continuous improvement.",
+        "steps": [
+          "User training and onboarding",
+          "Data interpretation guidance",
+          "Performance monitoring",
+          "Continuous improvement iterations"
+        ]
+      }
+    ]
+  },
   "languages": {
-    "chinese": "中文",
-    "english": "English"
+    "title": "Our Structured Development Process",
+    "description": "We've refined our development methodology to minimize risk and maximize innovation, ensuring your precision spring project moves efficiently from concept to reality.",
+    "principles": {
+      "title": "Our Development Principles",
+      "items": [
+        "Rapid iteration cycles for continuous improvement",
+        "Transparent communication throughout development",
+        "Modular architecture for flexible, scalable solutions",
+        "Risk mitigation strategies at every phase",
+        "Focus on user experience and practical functionality"
+      ]
+    },
+    "steps": [
+      {
+        "id": 1,
+        "title": "Precision Spring Design",
+        "description": "We begin by designing custom precision springs for your industry and use case, selecting appropriate materials, wire diameters, and structures.",
+        "steps": [
+          "Industry-specific requirement analysis",
+          "Spring type and material selection",
+          "Prototype spring development",
+          "Initial testing and calibration"
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Spring Integration",
+        "description": "Our engineering team seamlessly integrates springs into your products while maintaining functionality, durability, and reliability.",
+        "steps": [
+          "Functional optimization",
+          "Non-intrusive integration techniques",
+          "Durability and fatigue testing",
+          "Function and performance validation"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "AI & Data Analysis",
+        "description": "We develop specialized algorithms to transform spring performance data into actionable insights for your industry needs.",
+        "steps": [
+          "Industry-specific algorithm development",
+          "Machine learning model training with domain data",
+          "Real-time performance analysis",
+          "Actionable insight delivery optimization"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Production & Certification",
+        "description": "We handle manufacturing, quality control, and ensure all precision spring products meet relevant industry standards and certifications.",
+        "steps": [
+          "Manufacturing partner selection",
+          "Quality assurance processes",
+          "Industry-specific certification acquisition",
+          "Initial production supervision"
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Deployment & Support",
+        "description": "We provide comprehensive training, implementation assistance, and ongoing support to ensure successful application and continuous improvement.",
+        "steps": [
+          "User training and onboarding",
+          "Data interpretation guidance",
+          "Performance monitoring",
+          "Continuous improvement iterations"
+        ]
+      }
+    ]
+  },
+  "careers": {
+    "backToHome": "Back to Home",
+    "title": "Join Our Team",
+    "subtitle": "We're seeking driven innovators to advance technologies and redefine the spring industry.",
+    "description": "We welcome both full-time professionals and interns who are eager to contribute to groundbreaking technology.",
+    "whyJoin": "Why Join ISRI-Shuangdi Spring?",
+    "benefits": [
+      {
+        "title": "Innovation",
+        "description": "Drive advancements in precision spring design and manufacturing that power next-generation mobility and technology."
+      },
+      {
+        "title": "Impact",
+        "description": "Engineer spring solutions that improve safety, performance, and reliability across automotive, aerospace, energy, and robotics."
+      },
+      {
+        "title": "Growth",
+        "description": "Expand your expertise in a global industry with evolving applications and endless opportunities for innovation."
+      }
+    ],
+    "contactTitle": "Contact Our COO",
+    "contactName": "Eric Lou",
+    "contactRole": "COO",
+    "contactEmail": "markying2014@gmail.com",
+    "linkedinProfile": "LinkedIn Profile"
   },
   "seo": {
     "defaultTitle": "ISRI-Shuangdi Spring",
@@ -396,17 +559,81 @@
     "newRevenueTitle": "New Revenue Products",
     "newRevenueDescription": "Develop high-value precision spring products to meet emerging needs in automotive, aerospace, energy, and robotics industries.",
     "customerAttractionTitle": "Innovate to Attract Customers",
-    "customerAttractionDescription": "Earn the trust of global clients with leading spring design and manufacturing technology.",
-    "comfortZoneTitle": "Development in Your Comfort Zone",
-    "comfortZoneDescription": "We tackle the technical challenges of extreme conditions, ensuring your products remain reliable.",
-    "brandBuildingTitle": "Brand-Building Leaps",
-    "brandBuildingDescription": "Propel your brand into the future with world-class spring technology and quality standards.",
-    "learnMoreButton": "Learn about our structured development process"
+    "customerAttractionDescription": "Attract customers with leading spring design and manufacturing technology.",
+    "comfortZoneTitle": "Comfort Zone Development",
+    "comfortZoneDescription": "We tackle technical challenges in extreme conditions to ensure your products remain reliable.",
+    "brandBuildingTitle": "Brand Building Leap",
+    "brandBuildingDescription": "With world-class spring technology and quality standards, we help your brand move into the future.",
+    "learnMoreButton": "Learn more about our structured development process"
+  },
+  "techDetails": {
+    "title": "Technical Deep Dive",
+    "description": "Explore the engineering details behind our precision spring manufacturing technology and understand how our platform enables rapid design, validation, and mass production through advanced processes and intelligent management.",
+    "sections": {
+      "systemArchitecture": {
+        "title": "System Architecture",
+        "description": "Our manufacturing platform adopts a modular architecture, forming an integrated closed-loop process from material selection, heat treatment, forming, surface treatment, to inspection and delivery."
+      },
+      "manufacturingProcess": {
+        "title": "Physical Manufacturing (Input)",
+        "subtitle": "Collect raw materials and perform basic processing:",
+        "items": [
+          "Spring wire/alloy selection",
+          "Wire diameter and material inspection",
+          "Heat treatment process",
+          "Surface treatment (plating/coating/anti-corrosion)",
+          "Raw material storage and energy management"
+        ]
+      },
+      "platform": {
+        "title": "Manufacturing Platform (Process)",
+        "subtitle": "Our platform connects design, process, and production to drive precision manufacturing:",
+        "items": [
+          "Process database and cloud storage",
+          "Simulation and stress/fatigue data analysis",
+          "AI & ML-assisted design optimization",
+          "Real-time quality monitoring and SPC control",
+          "Automated production line & equipment management",
+          "Process traceability and energy efficiency optimization"
+        ]
+      },
+      "userApplications": {
+        "title": "User Applications (Output)",
+        "subtitle": "Value and deliverables for customers:",
+        "items": [
+          "Customized design and engineering reports",
+          "Product certifications (IATF16949, ISO, etc.)",
+          "Real-time production and delivery tracking",
+          "Long-term reliability data and improvement solutions",
+          "Digital integration with customer systems"
+        ]
+      },
+      "ourApproach": {
+        "title": "Our Approach",
+        "description": "At ISRI-Shuangdi, we've developed a systematic approach that combines innovation with practicality, ensuring every spring project transitions efficiently from concept to market-ready product:",
+        "steps": [
+          {
+            "title": "Discovery",
+            "description": "In-depth market research and requirements gathering to understand your specific application scenarios."
+          },
+          {
+            "title": "Design & Prototyping",
+            "description": "Complete initial design and rapid prototyping for early testing and iterative optimization."
+          },
+          {
+            "title": "Development & Testing",
+            "description": "Rigorous development and comprehensive testing to ensure products meet performance, lifespan, and reliability standards."
+          }
+        ]
+      }
+    },
+    "backToHome": "Back to Home",
+    "exploreProcess": "Explore Our Development Process"
   },
   "projects": {
     "tag": "Customer Cases",
-    "title": "The Trusted Choice of Global Clients",
-    "subtitle": "From automotive giants to aerospace, our precision spring technology has earned the trust of clients worldwide.",
+    "title": "Trusted by Global Customers",
+    "subtitle": "From automotive giants to aerospace, our precision spring technology has won the trust of customers worldwide.",
     "swipeToNavigate": "Swipe to navigate",
     "zf": {
       "title": "Automotive Components",
