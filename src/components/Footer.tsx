@@ -28,24 +28,41 @@ const Footer = () => {
     
     try {
       // EmailJS configuration
-      const EMAILJS_SERVICE_ID = "service_i3h66xg";
-      const EMAILJS_TEMPLATE_ID = "template_fgq53nh";
-      const EMAILJS_PUBLIC_KEY = "wQmcZvoOqTAhGnRZ3";
+      const EMAILJS_SERVICE_ID = "service_dca804k";
+      const EMAILJS_TEMPLATE_ID = "template_qsl8rhw";
+      const EMAILJS_PUBLIC_KEY = "kX8Atk8WtRgGgR6IO";
+      
+      // Initialize EmailJS with your public key
+      // Note: In emailjs-com, init is not required before send
+      // The public key is passed directly to the send method
       
       const templateParams = {
-        from_name: "Website Subscriber",
-        from_email: email,
-        message: `New subscription request from the website footer.`,
-        to_name: 'WRLDS Team',
+        email: email, // The only variable used in the template
+        to_email: 'yingwl@msn.com',
         reply_to: email
       };
       
-      await emailjs.send(
+      // Template variables:
+      // - {{email}} - Subscriber's email address
+      
+      console.log('Template parameters:', templateParams);
+      
+      console.log('Sending email with params:', {
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: EMAILJS_TEMPLATE_ID,
+        template_params: templateParams,
+        user_id: EMAILJS_PUBLIC_KEY
+      });
+      
+      // Use the send method with the service ID and template ID
+      const response = await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
         EMAILJS_PUBLIC_KEY
       );
+      
+      console.log('EmailJS response:', response);
       
       toast({
         title: t('footer.toastSuccess'),
@@ -55,11 +72,40 @@ const Footer = () => {
       
       setEmail("");
     } catch (error) {
-      console.error("Error sending subscription:", error);
+      console.error("Detailed error:", {
+        name: error?.name,
+        message: error?.message,
+        status: error?.status,
+        response: error?.response,
+        stack: error?.stack
+      });
+      
+      let errorMessage = t('footer.subscribeError');
+      
+      // Add more specific error messages based on the error type
+      if (error instanceof Error) {
+        console.log('Error details:', {
+          message: error.message,
+          status: (error as any)?.status,
+          response: (error as any)?.response?.data
+        });
+        
+        if (error.message.includes('Network Error')) {
+          errorMessage = '无法连接到邮件服务，请检查网络连接';
+        } else if (error.message.includes('400')) {
+          errorMessage = '请求格式错误，请检查邮箱地址是否正确';
+        } else if (error.message.includes('401') || error.message.includes('403')) {
+          errorMessage = '认证失败，请联系网站管理员';
+        } else if (error.message.includes('429')) {
+          errorMessage = '请求过于频繁，请稍后再试';
+        } else if (error.message.includes('500')) {
+          errorMessage = '服务器内部错误，请稍后再试';
+        }
+      }
       
       toast({
         title: t('footer.toastError'),
-        description: t('footer.subscribeError'),
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
