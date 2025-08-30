@@ -64,9 +64,9 @@ const ContactInfo = () => {
               <h3 className="text-xl font-bold text-gray-900">{t('contact.people.love.name')}</h3>
               <p className="text-gray-600 mb-4">{t('contact.people.love.role')}</p>
               <div className="flex flex-col space-y-3">
-                <a href="mailto:yingwl@msn.com" className="flex items-center text-gray-700 hover:text-blue-600">
+                <a href="mailto:markying2014@gmail.com" className="flex items-center text-gray-700 hover:text-blue-600">
                   <Mail className="w-5 h-5 mr-2" />
-                  yingwl@msn.com
+                  markying2014@gmail.com
                 </a>
                 <a 
                   href="https://www.linkedin.com/in/love-anderberg-67549a174/" 

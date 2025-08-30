@@ -173,8 +173,8 @@ const About = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     {
-                      key: "felix",
-                      image: "/lovable-uploads/aa5291bd-2417-4c1e-9a02-0bcc71a92507.png"
+                      key: "christoph-krone",
+                      image: "/lovable-uploads/krone.jpg"
                     },
                     {
                       key: "niek",
