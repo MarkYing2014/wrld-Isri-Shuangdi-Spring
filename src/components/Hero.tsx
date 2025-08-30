@@ -88,6 +88,37 @@ const Hero = () => {
     };
   }, [isMobile]);
   
+  // Initialize audio context to help with autoplay
+  useEffect(() => {
+    // Create an audio context to help with autoplay restrictions
+    const initAudioContext = async () => {
+      try {
+        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+        if (AudioContext) {
+          const audioContext = new AudioContext();
+          if (audioContext.state === 'suspended') {
+            await audioContext.resume();
+          }
+        }
+      } catch (e) {
+        console.log('AudioContext error:', e);
+      }
+    };
+
+    // Initialize audio context on user interaction
+    const handleInteraction = () => {
+      initAudioContext();
+      document.removeEventListener('click', handleInteraction);
+      document.removeEventListener('touchstart', handleInteraction);
+    };
+
+    document.addEventListener('click', handleInteraction, { once: true });
+    document.addEventListener('touchstart', handleInteraction, { once: true });
+
+    // Also try to initialize immediately
+    initAudioContext();
+  }, []);
+
   // Try to autoplay when component mounts
   useEffect(() => {
     if (!videoRef.current) return;
@@ -210,16 +241,47 @@ const Hero = () => {
                 WebkitTouchCallout: 'none',
                 WebkitTapHighlightColor: 'transparent'
               }}
-              onLoadedData={() => {
+              onLoadedData={async () => {
                 // Force play when video is loaded
                 if (videoRef.current) {
-                  videoRef.current.play().catch(e => {
-                    console.log('Autoplay prevented, will try again');
-                    // Try again after a short delay
-                    setTimeout(() => {
-                      videoRef.current?.play().catch(console.error);
-                    }, 1000);
-                  });
+                  try {
+                    // Try to play immediately
+                    await videoRef.current.play();
+                    
+                    // If we get here, play was successful
+                    console.log('Video is playing!');
+                    
+                  } catch (e) {
+                    console.log('Autoplay prevented, will try with audio context');
+                    
+                    // Try to create and resume audio context
+                    try {
+                      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+                      if (AudioContext) {
+                        const audioContext = new AudioContext();
+                        if (audioContext.state === 'suspended') {
+                          await audioContext.resume();
+                        }
+                      }
+                      
+                      // Try to play again after audio context is ready
+                      await videoRef.current.play();
+                      console.log('Video started after audio context resume');
+                      
+                    } catch (e2) {
+                      console.log('Second attempt failed, will try one more time');
+                      
+                      // Final attempt with a delay
+                      setTimeout(async () => {
+                        try {
+                          await videoRef.current?.play();
+                          console.log('Video started after delay');
+                        } catch (e3) {
+                          console.error('All autoplay attempts failed:', e3);
+                        }
+                      }, 1000);
+                    }
+                  }
                 }
               }}
             >
