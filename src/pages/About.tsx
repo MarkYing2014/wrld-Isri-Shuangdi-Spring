@@ -217,9 +217,12 @@ const About = () => {
                 className="mb-16 bg-gray-50 p-8 rounded-xl"
               >
                 <h2 className="text-3xl font-bold mb-6">{t('about.address.title')}</h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  {t('about.address.content')}
-                </p>
+                <div className="space-y-3 text-gray-600 text-lg leading-relaxed">
+                  <p>{t('about.address.content')}</p>
+                  <p>{t('about.address.phone')}</p>
+                  <p>{t('about.address.email')}</p>
+                  <p>{t('about.address.fax')}</p>
+                </div>
               </motion.div>
             
             <div className="mt-16 pt-8 border-t border-gray-200">

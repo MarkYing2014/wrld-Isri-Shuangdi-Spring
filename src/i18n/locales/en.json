@@ -460,7 +460,10 @@
     },
     "address": {
       "title": "Company Address",
-      "content": "No. 11, Wenzhong Road, Economic Development Zone, Zhuji City, Zhejiang Province, China"
+      "content": "No. 11, Wenzhong Road, Economic Development Zone, Zhuji City, Zhejiang Province, China",
+      "phone": "Phone: 86-575-87071688",
+      "email": "Email: spring@isri-shuangdi.com",
+      "fax": "Fax: 86-575-87073068"
     },
     "team": {
       "title": "Our Team",
