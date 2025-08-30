@@ -11,42 +11,28 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
   
-  // Function to enable audio context and play video
-  const enableVideoPlayback = async () => {
+  // Function to force video play on mobile
+  const forceVideoPlay = () => {
     if (!videoRef.current) return;
     
-    try {
-      // Create an audio context if needed (required for iOS)
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (AudioContext) {
-        const audioContext = new AudioContext();
-        if (audioContext.state === 'suspended') {
-          await audioContext.resume();
-        }
-      }
+    // Ensure video is muted (required for autoplay)
+    videoRef.current.muted = true;
+    
+    // Remove any existing source and re-add it
+    const source = videoRef.current.querySelector('source');
+    if (source) {
+      const newSource = document.createElement('source');
+      newSource.src = source.src;
+      newSource.type = 'video/mp4';
+      videoRef.current.pause();
+      videoRef.current.load();
       
-      // Ensure video is muted (required for autoplay on most mobile browsers)
-      videoRef.current.muted = true;
-      
-      // Try to play the video
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        await playPromise.catch(error => {
-          console.log('Autoplay prevented, will retry with user interaction:', error);
-          // If autoplay fails, try again with a user gesture
-          const handleFirstInteraction = () => {
-            videoRef.current?.play().catch(console.error);
-            document.removeEventListener('click', handleFirstInteraction);
-            document.removeEventListener('touchstart', handleFirstInteraction);
-          };
-          
-          document.addEventListener('click', handleFirstInteraction, { once: true });
-          document.addEventListener('touchstart', handleFirstInteraction, { once: true });
+      // Small delay to ensure the video is ready
+      setTimeout(() => {
+        videoRef.current?.play().catch(error => {
+          console.log('Autoplay failed, will try with user interaction');
         });
-      }
-    } catch (error) {
-      console.error('Error enabling video playback:', error);
+      }, 300);
     }
   };
   
@@ -84,7 +70,7 @@ const Hero = () => {
       }
       
       if (videoRef.current) {
-        enableVideoPlayback();
+        forceVideoPlay();
       }
     };
     
@@ -99,35 +85,25 @@ const Hero = () => {
     if (!videoRef.current) return;
     
     // Try to play immediately
-    enableVideoPlayback();
+    forceVideoPlay();
     
-    // Set up intersection observer to play when video is in view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            enableVideoPlayback();
-          }
-        });
-      },
-      { threshold: 0.5 } // Trigger when 50% of the video is visible
-    );
-    
-    observer.observe(videoRef.current);
-    
-    // Also try to play when the page becomes visible
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        enableVideoPlayback();
-      }
+    // Add a one-time touch event listener to the document
+    const handleFirstTouch = () => {
+      forceVideoPlay();
+      document.removeEventListener('touchstart', handleFirstTouch);
     };
     
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('touchstart', handleFirstTouch, { once: true });
+    
+    // Try again after a delay
+    const timer = setTimeout(() => {
+      forceVideoPlay();
+    }, 1000);
     
     // Cleanup
     return () => {
-      observer.disconnect();
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearTimeout(timer);
+      document.removeEventListener('touchstart', handleFirstTouch);
     };
   }, []);
   const containerVariants = {
@@ -192,7 +168,14 @@ const Hero = () => {
                 height: '100%',
                 position: 'absolute',
                 top: 0,
-                left: 0
+                left: 0,
+                zIndex: 1
+              }}
+              onLoadedData={() => {
+                // Try to play when video is loaded
+                if (videoRef.current) {
+                  videoRef.current.play().catch(console.error);
+                }
               }}
             >
               <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
