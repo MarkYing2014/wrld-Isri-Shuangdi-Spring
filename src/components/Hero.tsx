@@ -11,28 +11,36 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
   
-  // Function to force video play on mobile
-  const forceVideoPlay = () => {
+  // Function to handle video play with multiple fallback attempts
+  const playVideoWithFallback = async () => {
     if (!videoRef.current) return;
-    
+
     // Ensure video is muted (required for autoplay)
     videoRef.current.muted = true;
     
-    // Remove any existing source and re-add it
-    const source = videoRef.current.querySelector('source');
-    if (source) {
-      const newSource = document.createElement('source');
-      newSource.src = source.src;
-      newSource.type = 'video/mp4';
-      videoRef.current.pause();
-      videoRef.current.load();
+    // Try to play immediately
+    try {
+      await videoRef.current.play();
+    } catch (e) {
+      console.log('Initial play failed, trying fallback...');
       
-      // Small delay to ensure the video is ready
-      setTimeout(() => {
-        videoRef.current?.play().catch(error => {
-          console.log('Autoplay failed, will try with user interaction');
-        });
-      }, 300);
+      // Fallback 1: Try with a small delay
+      setTimeout(async () => {
+        try {
+          await videoRef.current?.play();
+        } catch (e) {
+          console.log('First fallback failed, trying second fallback...');
+          
+          // Fallback 2: Try with a longer delay
+          setTimeout(async () => {
+            try {
+              await videoRef.current?.play();
+            } catch (e) {
+              console.log('All autoplay attempts failed');
+            }
+          }, 1000);
+        }
+      }, 500);
     }
   };
   
@@ -70,7 +78,7 @@ const Hero = () => {
       }
       
       if (videoRef.current) {
-        forceVideoPlay();
+        playVideoWithFallback();
       }
     };
     
@@ -83,27 +91,54 @@ const Hero = () => {
   // Try to autoplay when component mounts
   useEffect(() => {
     if (!videoRef.current) return;
+
+    // Set up video attributes for autoplay
+    const video = videoRef.current;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('x5-playsinline', 'true');
+    video.setAttribute('x5-video-player-type', 'h5');
+    video.setAttribute('x5-video-player-fullscreen', 'true');
+    video.setAttribute('x5-video-orientation', 'portrait');
+    video.preload = 'auto';
+
+    // First attempt to play
+    playVideoWithFallback();
+
+    // Try again when page becomes visible (e.g., after tab switch)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        playVideoWithFallback();
+      }
+    };
+
+    // Try again when the video is scrolled into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playVideoWithFallback();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(video);
     
-    // Try to play immediately
-    forceVideoPlay();
-    
-    // Add a one-time touch event listener to the document
+    // Add a one-time touch event listener as last resort
     const handleFirstTouch = () => {
-      forceVideoPlay();
+      playVideoWithFallback();
       document.removeEventListener('touchstart', handleFirstTouch);
     };
     
     document.addEventListener('touchstart', handleFirstTouch, { once: true });
-    
-    // Try again after a delay
-    const timer = setTimeout(() => {
-      forceVideoPlay();
-    }, 1000);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     
     // Cleanup
     return () => {
-      clearTimeout(timer);
+      observer.disconnect();
       document.removeEventListener('touchstart', handleFirstTouch);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
   const containerVariants = {
@@ -157,7 +192,7 @@ const Hero = () => {
               x5-playsinline="true"
               x5-video-player-type="h5"
               x5-video-player-fullscreen="true"
-              x5-video-orientation="portraint"
+              x5-video-orientation="portrait"
               preload="auto"
               disablePictureInPicture
               className="w-full h-full object-cover opacity-70 grayscale object-center"
@@ -169,11 +204,16 @@ const Hero = () => {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                zIndex: 1
+                zIndex: 1,
+                backgroundColor: 'black' // Ensures no flash of white
               }}
               onLoadedData={() => {
                 // Try to play when video is loaded
-                if (videoRef.current) {
+                playVideoWithFallback();
+              }}
+              onPlay={() => {
+                // Ensure video stays playing if it starts
+                if (videoRef.current?.paused) {
                   videoRef.current.play().catch(console.error);
                 }
               }}
