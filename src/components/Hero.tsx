@@ -184,7 +184,7 @@ const Hero = () => {
           <div className="relative w-full h-full">
             <video 
               ref={videoRef}
-              autoPlay
+              autoPlay={true}
               loop
               muted
               playsInline
@@ -205,16 +205,21 @@ const Hero = () => {
                 top: 0,
                 left: 0,
                 zIndex: 1,
-                backgroundColor: 'black' // Ensures no flash of white
+                backgroundColor: 'black',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+                WebkitTapHighlightColor: 'transparent'
               }}
               onLoadedData={() => {
-                // Try to play when video is loaded
-                playVideoWithFallback();
-              }}
-              onPlay={() => {
-                // Ensure video stays playing if it starts
-                if (videoRef.current?.paused) {
-                  videoRef.current.play().catch(console.error);
+                // Force play when video is loaded
+                if (videoRef.current) {
+                  videoRef.current.play().catch(e => {
+                    console.log('Autoplay prevented, will try again');
+                    // Try again after a short delay
+                    setTimeout(() => {
+                      videoRef.current?.play().catch(console.error);
+                    }, 1000);
+                  });
                 }
               }}
             >
