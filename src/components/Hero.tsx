@@ -11,19 +11,42 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
   
-  // Ensure video plays automatically when component mounts
-  const handleVideoInteraction = () => {
+  // Function to enable audio context and play video
+  const enableVideoPlayback = async () => {
     if (!videoRef.current) return;
     
-    // Try to play the video
-    const playPromise = videoRef.current.play();
-    
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log('Autoplay prevented:', error);
-        // Show play button if autoplay fails
-        setHasInteracted(false);
-      });
+    try {
+      // Create an audio context if needed (required for iOS)
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioContext) {
+        const audioContext = new AudioContext();
+        if (audioContext.state === 'suspended') {
+          await audioContext.resume();
+        }
+      }
+      
+      // Ensure video is muted (required for autoplay on most mobile browsers)
+      videoRef.current.muted = true;
+      
+      // Try to play the video
+      const playPromise = videoRef.current.play();
+      
+      if (playPromise !== undefined) {
+        await playPromise.catch(error => {
+          console.log('Autoplay prevented, will retry with user interaction:', error);
+          // If autoplay fails, try again with a user gesture
+          const handleFirstInteraction = () => {
+            videoRef.current?.play().catch(console.error);
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+          };
+          
+          document.addEventListener('click', handleFirstInteraction, { once: true });
+          document.addEventListener('touchstart', handleFirstInteraction, { once: true });
+        });
+      }
+    } catch (error) {
+      console.error('Error enabling video playback:', error);
     }
   };
   
@@ -61,7 +84,7 @@ const Hero = () => {
       }
       
       if (videoRef.current) {
-        handleVideoInteraction();
+        enableVideoPlayback();
       }
     };
     
@@ -73,27 +96,40 @@ const Hero = () => {
   
   // Try to autoplay when component mounts
   useEffect(() => {
-    if (videoRef.current) {
-      // Set a small timeout to ensure the video element is ready
-      const timer = setTimeout(() => {
-        handleVideoInteraction();
-      }, 500);
-      
-      // Also try to play when the page becomes visible
-      const handleVisibilityChange = () => {
-        if (document.visibilityState === 'visible') {
-          handleVideoInteraction();
-        }
-      };
-      
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-      
-      return () => {
-        clearTimeout(timer);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-      };
-    }
-  }, [isMobile]);
+    if (!videoRef.current) return;
+    
+    // Try to play immediately
+    enableVideoPlayback();
+    
+    // Set up intersection observer to play when video is in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            enableVideoPlayback();
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the video is visible
+    );
+    
+    observer.observe(videoRef.current);
+    
+    // Also try to play when the page becomes visible
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        enableVideoPlayback();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Cleanup
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
   const containerVariants = {
     hidden: {
       opacity: 0
@@ -147,8 +183,17 @@ const Hero = () => {
               x5-video-player-fullscreen="true"
               x5-video-orientation="portraint"
               preload="auto"
+              disablePictureInPicture
               className="w-full h-full object-cover opacity-70 grayscale object-center"
               poster="/lovable-uploads/logoFinal.png"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                top: 0,
+                left: 0
+              }}
             >
               <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
               {/* Fallback image if video fails to load */}
