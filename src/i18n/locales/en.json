@@ -17,12 +17,14 @@
     "linkedin": "LinkedIn Profile",
     "people": {
       "felix": {
-        "name": "Mark Ying",
-        "role": "Sales Manager"
+        "name": "Felix Yin",
+        "role": "Sales Manager",
+        "bio": "Leading sales and marketing efforts for ISRI-Shuangdi Spring, focusing on global automotive applications."
       },
       "love": {
         "name": "Love Anderberg",
-        "role": "Operations Manager"
+        "role": "Operations Manager",
+        "bio": "Overseeing operations and supply chain management for high-volume automotive spring production."
       }
     }
   },
