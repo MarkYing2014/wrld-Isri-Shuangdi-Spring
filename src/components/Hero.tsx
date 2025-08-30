@@ -11,18 +11,19 @@ const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
   
-  // Handle video play/pause on mobile
+  // Ensure video plays automatically when component mounts
   const handleVideoInteraction = () => {
     if (!videoRef.current) return;
     
-    if (videoRef.current.paused) {
-      videoRef.current.play().then(() => {
-        setHasInteracted(true);
-      }).catch(error => {
-        console.log('Playback failed:', error);
+    // Try to play the video
+    const playPromise = videoRef.current.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log('Autoplay prevented:', error);
+        // Show play button if autoplay fails
+        setHasInteracted(false);
       });
-    } else {
-      videoRef.current.pause();
     }
   };
   
@@ -70,10 +71,27 @@ const Hero = () => {
     };
   }, [isMobile]);
   
-  // Try to autoplay when component mounts (for non-mobile)
+  // Try to autoplay when component mounts
   useEffect(() => {
-    if (!isMobile && videoRef.current) {
-      videoRef.current.play().catch(console.error);
+    if (videoRef.current) {
+      // Set a small timeout to ensure the video element is ready
+      const timer = setTimeout(() => {
+        handleVideoInteraction();
+      }, 500);
+      
+      // Also try to play when the page becomes visible
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible') {
+          handleVideoInteraction();
+        }
+      };
+      
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+      
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
     }
   }, [isMobile]);
   const containerVariants = {
@@ -119,16 +137,18 @@ const Hero = () => {
           <div className="relative w-full h-full">
             <video 
               ref={videoRef}
-              autoPlay={!isMobile}
+              autoPlay
               loop
               muted
               playsInline
               webkit-playsinline="true"
               x5-playsinline="true"
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-video-orientation="portraint"
               preload="auto"
-              className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'} ${isMobile ? 'cursor-pointer' : ''}`}
+              className="w-full h-full object-cover opacity-70 grayscale object-center"
               poster="/lovable-uploads/logoFinal.png"
-              onClick={isMobile ? handleVideoInteraction : undefined}
             >
               <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
               {/* Fallback image if video fails to load */}
