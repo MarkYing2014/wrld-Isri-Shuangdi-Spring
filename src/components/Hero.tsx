@@ -9,39 +9,22 @@ const Hero = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   
-  // Function to handle video play with multiple fallback attempts
-  const playVideoWithFallback = async () => {
-    if (!videoRef.current) return;
-
-    // Ensure video is muted (required for autoplay)
-    videoRef.current.muted = true;
-    
-    // Try to play immediately
-    try {
-      await videoRef.current.play();
-    } catch (e) {
-      console.log('Initial play failed, trying fallback...');
-      
-      // Fallback 1: Try with a small delay
-      setTimeout(async () => {
-        try {
-          await videoRef.current?.play();
-        } catch (e) {
-          console.log('First fallback failed, trying second fallback...');
-          
-          // Fallback 2: Try with a longer delay
-          setTimeout(async () => {
-            try {
-              await videoRef.current?.play();
-            } catch (e) {
-              console.log('All autoplay attempts failed');
-            }
-          }, 1000);
-        }
-      }, 500);
-    }
+  // Function to handle play button click
+  const handlePlayClick = () => {
+    setShowVideo(true);
+    // Small delay to ensure state updates before playing
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+        videoRef.current.play().catch(e => {
+          console.error('Failed to play video:', e);
+          setShowVideo(false);
+        });
+      }
+    }, 50);
   };
   
   // Listen for cookie acceptance to trigger video play
@@ -77,9 +60,7 @@ const Hero = () => {
         return;
       }
       
-      if (videoRef.current) {
-        playVideoWithFallback();
-      }
+      // This will be handled by the play button now
     };
     
     document.addEventListener('click', handleDocumentClick);
@@ -88,42 +69,32 @@ const Hero = () => {
     };
   }, [isMobile]);
   
-  // Initialize audio context to help with autoplay
+  // Try to autoplay on desktop, show play button on mobile
   useEffect(() => {
-    // Create an audio context to help with autoplay restrictions
-    const initAudioContext = async () => {
-      try {
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-        if (AudioContext) {
-          const audioContext = new AudioContext();
-          if (audioContext.state === 'suspended') {
-            await audioContext.resume();
-          }
+    if (!isMobile && videoRef.current) {
+      // On desktop, try to autoplay
+      const playVideo = async () => {
+        try {
+          videoRef.current!.muted = true;
+          await videoRef.current!.play();
+          setShowVideo(true);
+        } catch (e) {
+          console.log('Desktop autoplay failed, showing play button');
+          setShowVideo(false);
         }
-      } catch (e) {
-        console.log('AudioContext error:', e);
-      }
-    };
+      };
+      
+      playVideo();
+    } else {
+      // On mobile, show play button by default
+      setShowVideo(false);
+    }
+  }, [isMobile]);
 
-    // Initialize audio context on user interaction
-    const handleInteraction = () => {
-      initAudioContext();
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-    };
-
-    document.addEventListener('click', handleInteraction, { once: true });
-    document.addEventListener('touchstart', handleInteraction, { once: true });
-
-    // Also try to initialize immediately
-    initAudioContext();
-  }, []);
-
-  // Try to autoplay when component mounts
+  // Set up video attributes
   useEffect(() => {
     if (!videoRef.current) return;
-
-    // Set up video attributes for autoplay
+    
     const video = videoRef.current;
     video.muted = true;
     video.playsInline = true;
@@ -134,42 +105,32 @@ const Hero = () => {
     video.setAttribute('x5-video-player-fullscreen', 'true');
     video.setAttribute('x5-video-orientation', 'portrait');
     video.preload = 'auto';
-
-    // First attempt to play
-    playVideoWithFallback();
-
-    // Try again when page becomes visible (e.g., after tab switch)
+    
+    // Try to play on desktop
+    if (!isMobile) {
+      video.play().catch(console.error);
+    }
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        playVideoWithFallback();
+      if (document.visibilityState === 'visible' && !isMobile) {
+        video.play().catch(console.error);
       }
     };
 
     // Try again when the video is scrolled into view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          playVideoWithFallback();
+        if (entry.isIntersecting && !isMobile) {
+          videoRef.current?.play().catch(console.error);
         }
       });
     }, { threshold: 0.5 });
 
     observer.observe(video);
     
-    // Add a one-time touch event listener as last resort
-    const handleFirstTouch = () => {
-      playVideoWithFallback();
-      document.removeEventListener('touchstart', handleFirstTouch);
-    };
-    
-    document.addEventListener('touchstart', handleFirstTouch, { once: true });
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    
     // Cleanup
     return () => {
-      observer.disconnect();
-      document.removeEventListener('touchstart', handleFirstTouch);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer.disconnect();
     };
   }, []);
   const containerVariants = {
@@ -213,86 +174,83 @@ const Hero = () => {
       <div className="banner-container bg-black relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full">
         <div className="absolute inset-0 bg-black w-full">
           <div className="relative w-full h-full">
-            <video 
-              ref={videoRef}
-              autoPlay={true}
-              loop
-              muted
-              playsInline
-              webkit-playsinline="true"
-              x5-playsinline="true"
-              x5-video-player-type="h5"
-              x5-video-player-fullscreen="true"
-              x5-video-orientation="portrait"
-              preload="auto"
-              disablePictureInPicture
-              className="w-full h-full object-cover opacity-70 grayscale object-center"
-              poster="/lovable-uploads/logoFinal.png"
-              style={{
-                objectFit: 'cover',
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                zIndex: 1,
-                backgroundColor: 'black',
-                WebkitUserSelect: 'none',
-                WebkitTouchCallout: 'none',
-                WebkitTapHighlightColor: 'transparent'
-              }}
-              onLoadedData={async () => {
-                // Force play when video is loaded
-                if (videoRef.current) {
-                  try {
-                    // Try to play immediately
-                    await videoRef.current.play();
-                    
-                    // If we get here, play was successful
-                    console.log('Video is playing!');
-                    
-                  } catch (e) {
-                    console.log('Autoplay prevented, will try with audio context');
-                    
-                    // Try to create and resume audio context
-                    try {
-                      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-                      if (AudioContext) {
-                        const audioContext = new AudioContext();
-                        if (audioContext.state === 'suspended') {
-                          await audioContext.resume();
-                        }
-                      }
-                      
-                      // Try to play again after audio context is ready
-                      await videoRef.current.play();
-                      console.log('Video started after audio context resume');
-                      
-                    } catch (e2) {
-                      console.log('Second attempt failed, will try one more time');
-                      
-                      // Final attempt with a delay
-                      setTimeout(async () => {
-                        try {
-                          await videoRef.current?.play();
-                          console.log('Video started after delay');
-                        } catch (e3) {
-                          console.error('All autoplay attempts failed:', e3);
-                        }
-                      }, 1000);
-                    }
-                  }
-                }
-              }}
-            >
-              <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
-              {/* Fallback image if video fails to load */}
-              <img 
-                src="/lovable-uploads/logoFinal.png" 
-                alt={t('hero.feature2.title')} 
-                className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
-              />
-            </video>
+            {showVideo ? (
+              <video 
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-player-fullscreen="true"
+                x5-video-orientation="portrait"
+                className="w-full h-full object-cover opacity-70 grayscale object-center"
+                style={{
+                  objectFit: 'cover',
+                  width: '100%',
+                  height: '100%',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  zIndex: 1,
+                  backgroundColor: 'black',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+                onPlay={() => setShowVideo(true)}
+                onPause={() => !isMobile && setShowVideo(false)}
+                onClick={!isMobile ? () => videoRef.current?.paused ? videoRef.current?.play() : videoRef.current?.pause() : undefined}
+              >
+                <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
+                <img 
+                  src="/lovable-uploads/logoFinal.png" 
+                  alt={t('hero.feature2.title')} 
+                  className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
+                />
+              </video>
+            ) : (
+              <div 
+                className="relative w-full h-full cursor-pointer"
+                onClick={handlePlayClick}
+                onMouseEnter={() => !isMobile && setIsHovered(true)}
+                onMouseLeave={() => !isMobile && setIsHovered(false)}
+              >
+                <img 
+                  src="/lovable-uploads/logoFinal.png" 
+                  alt={t('hero.feature2.title')} 
+                  className="w-full h-full object-cover opacity-70 grayscale"
+                  style={{
+                    objectPosition: isMobile ? 'right' : 'center',
+                    width: '100%',
+                    height: '100%',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0
+                  }}
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300"
+                  style={{ opacity: isHovered ? 1 : 0.8 }}
+                >
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <svg 
+                      className="w-8 h-8 sm:w-10 sm:h-10 text-white" 
+                      fill="currentColor" 
+                      viewBox="0 0 20 20" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path 
+                        fillRule="evenodd" 
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
+                        clipRule="evenodd" 
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-white"></div>
