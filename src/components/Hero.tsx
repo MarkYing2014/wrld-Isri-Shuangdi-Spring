@@ -48,11 +48,13 @@ const Hero = () => {
       <div className="banner-container bg-black relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full">
         <div className="absolute inset-0 bg-black w-full">
           <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            preload="metadata"
+            autoPlay={true}
+            loop
+            muted
+            playsInline
+            webkit-playsinline="true"
+            x5-playsinline="true"
+            preload="auto"
             className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`}
             poster="/lovable-uploads/logoFinal.png"
           >
