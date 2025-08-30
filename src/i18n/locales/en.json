@@ -458,12 +458,16 @@
         "description": "Delivering cutting-edge spring solutions for automotive leaders worldwide with certified quality."
       }
     },
+    "address": {
+      "title": "Company Address",
+      "content": "No. 11, Wenzhong Road, Economic Development Zone, Zhuji City, Zhejiang Province, China"
+    },
     "team": {
       "title": "Our Team",
       "description": "Our team unites international experts and local specialists, combining engineering excellence with deep industry experience.",
       "members": {
-        "felix": {
-          "name": "Felix von Heland",
+        "christoph-krone": {
+          "name": "Christoph Krone",
           "role": "CEO and Founder",
           "bio": "Leading ISRI-Shuangdi Spring with expertise in automotive suspension systems and precision spring manufacturing."
         },

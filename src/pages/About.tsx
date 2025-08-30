@@ -208,6 +208,19 @@ const About = () => {
                   ))}
                 </div>
               </motion.div>
+
+              {/* Address Section */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mb-16 bg-gray-50 p-8 rounded-xl"
+              >
+                <h2 className="text-3xl font-bold mb-6">{t('about.address.title')}</h2>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  {t('about.address.content')}
+                </p>
+              </motion.div>
             
             <div className="mt-16 pt-8 border-t border-gray-200">
               <Link to="/careers" className="inline-flex items-center px-5 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group">
