@@ -3,28 +3,20 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 
 const Hero = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [showVideo, setShowVideo] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   
-  // Function to handle play button click
-  const handlePlayClick = () => {
-    setShowVideo(true);
-    // Small delay to ensure state updates before playing
-    setTimeout(() => {
-      if (videoRef.current) {
-        videoRef.current.muted = true;
-        videoRef.current.play().catch(e => {
-          console.error('Failed to play video:', e);
-          setShowVideo(false);
-        });
-      }
-    }, 50);
+  // Function to handle video play on tap
+  const handleVideoTap = () => {
+    if (videoRef.current?.paused) {
+      videoRef.current.play().catch(console.error);
+    } else if (!isMobile) {
+      videoRef.current?.pause();
+    }
   };
   
   // Listen for cookie acceptance to trigger video play
@@ -49,27 +41,34 @@ const Hero = () => {
     };
   }, [isMobile]);
   
-  // Handle document click for mobile
+  // Handle document tap to play on mobile
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile || !videoRef.current) return;
     
-    const handleDocumentClick = (e: MouseEvent) => {
-      // Don't handle clicks on interactive elements
+    const handleTap = (e: Event) => {
+      // Don't handle taps on interactive elements
       const target = e.target as HTMLElement;
       if (target.closest('a, button, [role="button"], input, select, textarea')) {
         return;
       }
       
-      // This will be handled by the play button now
+      // Try to play the video on tap
+      if (videoRef.current) {
+        videoRef.current.play().catch(console.error);
+      }
     };
     
-    document.addEventListener('click', handleDocumentClick);
+    // Add both touch and click for better compatibility
+    document.addEventListener('click', handleTap);
+    document.addEventListener('touchend', handleTap, { passive: true });
+    
     return () => {
-      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('click', handleTap);
+      document.removeEventListener('touchend', handleTap);
     };
   }, [isMobile]);
   
-  // Try to autoplay on desktop, show play button on mobile
+  // Try to autoplay on desktop
   useEffect(() => {
     if (!isMobile && videoRef.current) {
       // On desktop, try to autoplay
@@ -77,17 +76,12 @@ const Hero = () => {
         try {
           videoRef.current!.muted = true;
           await videoRef.current!.play();
-          setShowVideo(true);
         } catch (e) {
-          console.log('Desktop autoplay failed, showing play button');
-          setShowVideo(false);
+          console.log('Desktop autoplay failed');
         }
       };
       
       playVideo();
-    } else {
-      // On mobile, show play button by default
-      setShowVideo(false);
     }
   }, [isMobile]);
 
@@ -174,83 +168,46 @@ const Hero = () => {
       <div className="banner-container bg-black relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full">
         <div className="absolute inset-0 bg-black w-full">
           <div className="relative w-full h-full">
-            {showVideo ? (
-              <video 
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                webkit-playsinline="true"
-                x5-playsinline="true"
-                x5-video-player-type="h5"
-                x5-video-player-fullscreen="true"
-                x5-video-orientation="portrait"
-                className="w-full h-full object-cover opacity-70 grayscale object-center"
-                style={{
-                  objectFit: 'cover',
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  zIndex: 1,
-                  backgroundColor: 'black',
-                  WebkitUserSelect: 'none',
-                  WebkitTouchCallout: 'none',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-                onPlay={() => setShowVideo(true)}
-                onPause={() => !isMobile && setShowVideo(false)}
-                onClick={!isMobile ? () => videoRef.current?.paused ? videoRef.current?.play() : videoRef.current?.pause() : undefined}
-              >
-                <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
-                <img 
-                  src="/lovable-uploads/logoFinal.png" 
-                  alt={t('hero.feature2.title')} 
-                  className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
-                />
-              </video>
-            ) : (
-              <div 
-                className="relative w-full h-full cursor-pointer"
-                onClick={handlePlayClick}
-                onMouseEnter={() => !isMobile && setIsHovered(true)}
-                onMouseLeave={() => !isMobile && setIsHovered(false)}
-              >
-                <img 
-                  src="/lovable-uploads/logoFinal.png" 
-                  alt={t('hero.feature2.title')} 
-                  className="w-full h-full object-cover opacity-70 grayscale"
-                  style={{
-                    objectPosition: isMobile ? 'right' : 'center',
-                    width: '100%',
-                    height: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0
-                  }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300"
-                  style={{ opacity: isHovered ? 1 : 0.8 }}
-                >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg 
-                      className="w-8 h-8 sm:w-10 sm:h-10 text-white" 
-                      fill="currentColor" 
-                      viewBox="0 0 20 20" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path 
-                        fillRule="evenodd" 
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
-                        clipRule="evenodd" 
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            )}
+            <video 
+              ref={videoRef}
+              autoPlay={!isMobile}
+              loop
+              muted
+              playsInline
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              x5-video-orientation="portrait"
+              className="w-full h-full object-cover opacity-70 grayscale object-center"
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 1,
+                backgroundColor: 'black',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none',
+                WebkitTapHighlightColor: 'transparent'
+              }}
+              onClick={() => {
+                if (videoRef.current?.paused) {
+                  videoRef.current.play().catch(console.error);
+                } else if (!isMobile) {
+                  videoRef.current?.pause();
+                }
+              }}
+            >
+              <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
+              <img 
+                src="/lovable-uploads/logoFinal.png" 
+                alt={t('hero.feature2.title')} 
+                className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
+              />
+            </video>
           </div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-white"></div>
