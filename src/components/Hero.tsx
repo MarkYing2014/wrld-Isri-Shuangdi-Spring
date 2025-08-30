@@ -3,10 +3,79 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useRef, useEffect, useState } from 'react';
 
 const Hero = () => {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  
+  // Handle video play/pause on mobile
+  const handleVideoInteraction = () => {
+    if (!videoRef.current) return;
+    
+    if (videoRef.current.paused) {
+      videoRef.current.play().then(() => {
+        setHasInteracted(true);
+      }).catch(error => {
+        console.log('Playback failed:', error);
+      });
+    } else {
+      videoRef.current.pause();
+    }
+  };
+  
+  // Listen for cookie acceptance to trigger video play
+  useEffect(() => {
+    const handleCookieAccept = () => {
+      if (isMobile && videoRef.current) {
+        videoRef.current.play().catch(console.error);
+      }
+    };
+    
+    // Listen for clicks on the cookie accept button
+    const cookieButton = document.querySelector('.cookie-consent__agree');
+    if (cookieButton) {
+      cookieButton.addEventListener('click', handleCookieAccept);
+    }
+    
+    // Cleanup
+    return () => {
+      if (cookieButton) {
+        cookieButton.removeEventListener('click', handleCookieAccept);
+      }
+    };
+  }, [isMobile]);
+  
+  // Handle document click for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const handleDocumentClick = (e: MouseEvent) => {
+      // Don't handle clicks on interactive elements
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, [role="button"], input, select, textarea')) {
+        return;
+      }
+      
+      if (videoRef.current) {
+        handleVideoInteraction();
+      }
+    };
+    
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [isMobile]);
+  
+  // Try to autoplay when component mounts (for non-mobile)
+  useEffect(() => {
+    if (!isMobile && videoRef.current) {
+      videoRef.current.play().catch(console.error);
+    }
+  }, [isMobile]);
   const containerVariants = {
     hidden: {
       opacity: 0
@@ -47,25 +116,30 @@ const Hero = () => {
   return <motion.div className="relative w-full" initial="hidden" animate="visible" variants={containerVariants}>
       <div className="banner-container bg-black relative overflow-hidden h-[50vh] sm:h-[60vh] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full">
         <div className="absolute inset-0 bg-black w-full">
-          <video 
-            autoPlay={true}
-            loop
-            muted
-            playsInline
-            webkit-playsinline="true"
-            x5-playsinline="true"
-            preload="auto"
-            className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`}
-            poster="/lovable-uploads/logoFinal.png"
-          >
-            <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
-            {/* Fallback image if video fails to load */}
-            <img 
-              src="/lovable-uploads/logoFinal.png" 
-              alt={t('hero.feature2.title')} 
-              className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
-            />
-          </video>
+          <div className="relative w-full h-full">
+            <video 
+              ref={videoRef}
+              autoPlay={!isMobile}
+              loop
+              muted
+              playsInline
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              preload="auto"
+              className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'} ${isMobile ? 'cursor-pointer' : ''}`}
+              poster="/lovable-uploads/logoFinal.png"
+              onClick={isMobile ? handleVideoInteraction : undefined}
+            >
+              <source src="/lovable-uploads/SpringManu.mp4" type="video/mp4" />
+              {/* Fallback image if video fails to load */}
+              <img 
+                src="/lovable-uploads/logoFinal.png" 
+                alt={t('hero.feature2.title')} 
+                className={`w-full h-full object-cover opacity-70 grayscale ${isMobile ? 'object-right' : 'object-center'}`} 
+              />
+            </video>
+          </div>
+          
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-white"></div>
         </div>
         
